@@ -1,6 +1,7 @@
 import webapp2
 import jinja2
 import os
+from ClothesModel import Clothes
 
 from google.appengine.api import users
 from google.appengine.ext import ndb
@@ -56,6 +57,7 @@ class MainHandler(webapp2.RequestHandler):
     cssi_user.put()
     self.response.write('Thanks for signing up, %s! <br><a href="/">Home</a>' %
         cssi_user.first_name)
+
 
 app = webapp2.WSGIApplication([
   ('/', MainHandler)
