@@ -16,6 +16,7 @@ class Upload(webapp2.RequestHandler):
         count = 0
         for ele in Clothes.query().fetch():
             count += 1
+        #get information from the form
         img_url = self.request.get("img_url")
         article_name = self.request.get("article_name")
         article_description = self.request.get("article_description")
@@ -25,8 +26,8 @@ class Upload(webapp2.RequestHandler):
         #add to database
         user_clothes = Clothes(img_url = img_url, article_name = article_name, article_description = article_description, categories=categories, personal_organization = personal_organization, number = count)
         user_clothes.put()
-
-        self.redirect('/welcome')
+        #chane the page
+        self.redirect('/all_clothes')
 
 
 

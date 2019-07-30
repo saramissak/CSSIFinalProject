@@ -1,6 +1,8 @@
 import webapp2
 import jinja2
 import os
+
+from aboutUs import about
 from ClothesModel import Clothes
 from Upload import Upload
 from get_all_clothes import AllClothes
@@ -73,8 +75,9 @@ class OutfitHandler(webapp2.RequestHandler):
         self.response.write(select_clothing_piece())
 
 app = webapp2.WSGIApplication([
-  ('/welcome', MainHandler),
+  ('/sign-in', MainHandler),
   ('/upload', Upload),
   ('/all_clothes', AllClothes),
   ('/make_outfits', OutfitHandler)
+  ('/about_us', about),
 ], debug=True)
