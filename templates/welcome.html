@@ -3,10 +3,10 @@
   <head>
     <title>Home</title>
     <link rel="stylesheet" href="../stylesheets/style.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   </head>
 <body>
   <header class="topnav">
+    <img src="https://cdn1.iconfinder.com/data/icons/office-web/128/office-94-512.png">
     <nav >
       <ul>
         <li><a href="#">Home</a></li>
@@ -14,7 +14,8 @@
         <li><a href="#">About</a></li>
         <li><a href="#">Sign Out</a></li>
         <li>
-          <form>
+          <form class="changepage" action="/makefits" method="post">
+
            <div class="input-field">
                <input id="search" type="search" required>
                <label class="label-icon" for="search">
@@ -23,12 +24,27 @@
            </form>
          </li>
           </ul>
-
             </nav>
              </header>
-    <input id="fit-button" type="submit" value="Make a Fit"></input>
-
-    <input id="fit-button" type="submit" value="Upload"></input>
-    <h1></h1>
-  </body>
-</html>
+              <form action="/makefits" method="post">
+                <input id="fit-button" type="submit" value="Make a Fit →"></input>
+              </form>
+                <br>
+                <input id="fit-button" type="submit" value="Upload →      "></input>
+            <div class="homePageCategories">
+              <h2>Clothes by Categories</h2>
+                <a class="categoryItem">
+                  <img src="https://purepng.com/public/uploads/large/purepng.com-black-t-shirtclothingblack-t-shirtfashion-dress-shirt-black-cloth-tshirt-631522326884bzr0p.png">
+                    <p class="-title">Tops</p>
+                <a class="categoryItem">
+                  <img src="https://banner2.kisspng.com/20180718/xwk/kisspng-pants-boot-clothing-jeans-gothic-fashion-ripped-jeans-5b4f3183b7d218.0761694315319166757529.jpg">
+                    <p class="-title">Bottoms</p>
+                <a class="categoryItem">
+                  <img src="https://stockx-360.imgix.net/Revenge-X-Storm-Low-Top-Black/Images/Revenge-X-Storm-Low-Top-Black/Lv2/img05.jpg?auto=format,compress&w=559&q=90&dpr=2&updated_at=1538080256">
+                    <p class="-title">Shoes</p>
+                <a class="categoryItem">
+                  <img src="https://cdn-images.farfetch-contents.com/12/27/19/07/12271907_11648268_1920.jpg">
+                    <p class="-title">Jackets</p>
+              </div>
+            </body>
+          </html>
