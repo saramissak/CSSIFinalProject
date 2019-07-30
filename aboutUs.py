@@ -13,3 +13,4 @@ the_jinja_env = jinja2.Environment(
 class about(webapp2.RequestHandler):
     def get(self):
         aboutus_template = the_jinja_env.get_template('templates/aboutus.html') #html page to be used
+        self.response.write(aboutus_template.render())

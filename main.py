@@ -74,6 +74,6 @@ app = webapp2.WSGIApplication([
   ('/sign-in', MainHandler),
   ('/upload', Upload),
   ('/all_clothes', AllClothes),
-  ('/about-us', about),
+  ('/about_us', about),
 
 ], debug=True)
