@@ -1,9 +1,18 @@
 import webapp2
 import jinja2
 import os
+from ClothesModel import Clothes
+from Upload import Upload
+from get_all_clothes import AllClothes
 
 from google.appengine.api import users
 from google.appengine.ext import ndb
+
+jinja_current_dir = jinja2.Environment(
+    loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
+    extensions=['jinja2.ext.autoescape'],
+    autoescape=True)
+
 
 class CssiUser(ndb.Model):
   first_name = ndb.StringProperty()
@@ -58,5 +67,7 @@ class MainHandler(webapp2.RequestHandler):
         cssi_user.first_name)
 
 app = webapp2.WSGIApplication([
-  ('/', MainHandler)
+  ('/welcome', MainHandler),
+  ('/upload', Upload),
+  ('/all_clothes', AllClothes)
 ], debug=True)
