@@ -10,4 +10,4 @@ the_jinja_env = jinja2.Environment(
     autoescape=True)
 
 class AllClothes(webapp2.RequestHandler):
-    def post(self):
+    def get(self):
