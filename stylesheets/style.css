@@ -1,5 +1,5 @@
 header {
-    background-color: powderblue;
+    background-color: skyblue;
     position: fixed;
     top: 0;
     left: 0;
@@ -8,9 +8,9 @@ header {
     display: flex;
     flex-wrap: nowrap;
     flex-direction: row;
+    flex-grow: 5;
     align-items: center;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
-    box-shadow: 0 0 25px 0 black;
+    box-shadow: 0 0 10px 0 slateblue;
 }
 
 header * {
@@ -28,19 +28,46 @@ header li a {
 }
 
 li a.active{
-  background-color: blue;
+  background-color: powderblue;
   color: white;
   height: 100%;
 }
 
 li a:hover:not(.active){
-  background-color: blue;
+  background-color: powderblue;
   color: white;
   height:100%;
 }
-li a{
+#fit-button.active{
+  background-color: powderblue;
+  color: white;
+  height: 100%;
+}
+
+#fit-button:hover:not(.active){
+  background-color: powderblue;
+  color: white;
+  height:100%;
+}
+
+li a, #fit-button{
   padding-top: 1%;
   padding-bottom: 1%;
   padding-left: 30px;
   padding-right: 30px;
+  border-radius: 15px;
+  box-shadow: 0 0 5px 0 slateblue;
+
+}
+
+#fit-button{
+  margin-top: 90px;
+  display: inline-block;
+  text-align: center;
+  padding: 6%;
+  font-size: 25px;
+}
+
+h1{
+  text-align: center
 }
