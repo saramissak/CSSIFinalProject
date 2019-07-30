@@ -66,8 +66,10 @@ class MainHandler(webapp2.RequestHandler):
     self.response.write('Thanks for signing up, %s! <br><a href="/">Home</a>' %
         cssi_user.first_name)
 
+
 app = webapp2.WSGIApplication([
   ('/welcome', MainHandler),
   ('/upload', Upload),
   ('/all_clothes', AllClothes)
+  ('/all_clothes', AllClothes),
 ], debug=True)
