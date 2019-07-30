@@ -1,6 +1,8 @@
 import webapp2
 import jinja2
 import os
+from ClothesModel import Clothes
+from Upload import Upload
 
 from google.appengine.api import users
 from google.appengine.ext import ndb
@@ -64,8 +66,12 @@ class MainHandler(webapp2.RequestHandler):
         cssi_user.first_name)
 
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> e7a431bc1c2b281937c20112505398a3d5537c27
 app = webapp2.WSGIApplication([
-  ('/', MainHandler)
+  ('/welcome', MainHandler),
+  ('/upload', Upload)
 ], debug=True)
