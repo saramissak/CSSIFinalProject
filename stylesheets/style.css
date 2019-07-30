@@ -10,7 +10,6 @@ header {
     flex-direction: row;
     flex-grow: 5;
     align-items: center;
-    box-shadow: 0 0 10px 0 slateblue;
 }
 
 header * {
@@ -18,8 +17,12 @@ header * {
 
 }
 
+header img {
+    height: 80px;
+}
+
 header li {
-    margin: 50px;
+    margin: 35px;
 }
 
 header li a {
@@ -38,6 +41,7 @@ li a:hover:not(.active){
   color: white;
   height:100%;
 }
+
 #fit-button.active{
   background-color: powderblue;
   color: white;
@@ -55,8 +59,7 @@ li a, #fit-button{
   padding-bottom: 1%;
   padding-left: 30px;
   padding-right: 30px;
-  border-radius: 15px;
-  box-shadow: 0 0 5px 0 slateblue;
+  border-radius: 10px;
 
 }
 
@@ -64,10 +67,24 @@ li a, #fit-button{
   margin-top: 90px;
   display: inline-block;
   text-align: center;
-  padding: 6%;
+  padding-right: 5%;
+  padding-left: 5%;
   font-size: 25px;
+  vertical-align: middle;
 }
 
 h1{
   text-align: center
+}
+
+.categoryItem img {
+  float: right;
+  width: 25%;
+  padding: 5px;
+  min-width: 20%;
+  max-width: 20%;
+  display: flex;
+  flex-wrap: wrap;
+
+
 }
