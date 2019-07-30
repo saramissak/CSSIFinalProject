@@ -3,6 +3,7 @@ import jinja2
 import os
 from ClothesModel import Clothes
 from Upload import Upload
+from get-all-clothes import AllClothes
 
 from google.appengine.api import users
 from google.appengine.ext import ndb
