@@ -69,5 +69,6 @@ class MainHandler(webapp2.RequestHandler):
 app = webapp2.WSGIApplication([
   ('/welcome', MainHandler),
   ('/upload', Upload),
-  ('/all_clothes', AllClothes)
+  ('/all_clothes', AllClothes),
+
 ], debug=True)

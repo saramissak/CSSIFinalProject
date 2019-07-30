@@ -10,3 +10,4 @@ class Clothes(ndb.Model):
     article_description = ndb.StringProperty(required = False)
     personal_organization = ndb.StringProperty(required = False)
     categories = ndb.StringProperty(required = False)
+    number = ndb.IntegerProperty(required = True)
