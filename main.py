@@ -3,7 +3,7 @@ import jinja2
 import os
 from ClothesModel import Clothes
 from Upload import Upload
-from get-all-clothes import AllClothes
+from get_all_clothes import AllClothes
 
 from google.appengine.api import users
 from google.appengine.ext import ndb
@@ -66,12 +66,6 @@ class MainHandler(webapp2.RequestHandler):
     self.response.write('Thanks for signing up, %s! <br><a href="/">Home</a>' %
         cssi_user.first_name)
 
-
-<<<<<<< HEAD
-
-
-=======
->>>>>>> e7a431bc1c2b281937c20112505398a3d5537c27
 app = webapp2.WSGIApplication([
   ('/welcome', MainHandler),
   ('/upload', Upload),
