@@ -10,7 +10,7 @@
 }
 
 #leftPerson {
-  background-color: skyblue;
+  background-color: #fcd303;
   flex-grow: 1;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   margin-left: 1%;
@@ -21,7 +21,7 @@
   width: 33%;
 }
  #middlePerson {
-   background-color: skyblue;
+   background-color: #fcd303;
    flex-grow: 1;
    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
    margin-left: 1%;
@@ -33,7 +33,7 @@
  }
 
  #rightPerson {
-   background-color: skyblue;
+   background-color: #fcd303;
    flex-grow: 1;
    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
    margin-left: 1%;
@@ -50,7 +50,7 @@
 
  html {
    background-color: white;
-   color: skyblue;
+   color: #fcd303;
    font-family: 'avenir next';
 
  }
