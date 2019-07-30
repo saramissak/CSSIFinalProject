@@ -12,7 +12,6 @@ the_jinja_env = jinja2.Environment(
 class AllClothes(webapp2.RequestHandler):
     def get(self):
         upload_template = the_jinja_env.get_template('templates/all-clothes.html') #html page to be used
-        all_clothes_template = the_jinja_env.get_template('templates/click-image.js') #html page to be used
 
 
         clothes_query = Clothes.query()
