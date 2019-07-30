@@ -1,9 +1,12 @@
 import webapp2
 import jinja2
 import os
+
+from aboutUs import about
 from ClothesModel import Clothes
 from Upload import Upload
 from get_all_clothes import AllClothes
+from makefits import select_clothing_piece
 
 
 from google.appengine.api import users
@@ -67,9 +70,14 @@ class MainHandler(webapp2.RequestHandler):
     self.response.write('Thanks for signing up, %s! <br><a href="/">Home</a>' %
         cssi_user.first_name)
 
+class OutfitHandler(webapp2.RequestHandler):
+    def get(self):
+        self.response.write(select_clothing_piece())
 
 app = webapp2.WSGIApplication([
-  ('/welcome', MainHandler),
+  ('/sign-in', MainHandler),
   ('/upload', Upload),
-  ('/all_clothes', AllClothes)
+  ('/all_clothes', AllClothes),
+  ('/make_outfits', OutfitHandler)
+  ('/about_us', about),
 ], debug=True)
