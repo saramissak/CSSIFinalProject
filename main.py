@@ -9,6 +9,7 @@ from ClothesModel import Clothes
 from Upload import Upload
 from get_all_clothes import AllClothes
 from makefits import select_clothing_piece
+from makefits import ShirtsJSON
 
 
 from google.appengine.api import users
@@ -85,5 +86,6 @@ app = webapp2.WSGIApplication([
   ('/make_outfits', OutfitHandler),
   ('/about_us', about),
   ('/welcome', welcome),
+  ('/shirtsjson', ShirtsJSON),
   ('/search', search)
 ], debug=True)
