@@ -4,7 +4,6 @@
     <title>Make a fit</title>
     <link rel="stylesheet" href="../stylesheets/style.css">
     <!--<script src="click-image.js"></script>-->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style media="screen">
       .active {
         border: solid yellow thick;
@@ -50,21 +49,16 @@
                   registerHandlers()
                     function registerHandlers() {
                       document.getElementById({{element.number}}).addEventListener("click", myFunction);
-                      console.log('TEST')
                     }
                     function myFunction(event) {
-                      // {{counter}} += 1
-                      console.log(event.target)
                       var list = document.getElementsByClassName("active")
 
                       for(var i = 0; i< list.length; i++){
                         list[i].className = 'notActive{{element.number}}'
                       }
-
                       event.target.className = 'active'
                       {{selected}} = {{element.number}};
                       console.log({{selected}})
-
                     }
 
                </script>
