@@ -33,7 +33,7 @@
     <br>
     <br>
     {% for element in img %}
-      <img src="{{element.img_url}}" alt="idk">
+      <img id="image{{element.number}}" src="{{element.img_url}}" alt="idk">
       <p>{{element.article_name}}</p>
       <p>Descritption: {{element.article_description}}</p>
       <p>Categories: {{element.categories}}</p>
