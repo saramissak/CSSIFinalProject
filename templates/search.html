@@ -2,6 +2,8 @@
 <html lang="en" dir="ltr">
   <head>
     <link rel="stylesheet" href="../stylesheets/style.css">
+    <link rel="stylesheet" href="../stylesheets/search.css">
+
     <meta charset="utf-8">
     <title>Search</title>
   </head>
@@ -32,6 +34,11 @@
     <br>
     {% for element in img %}
       <img src="{{element.img_url}}" alt="idk">
+      <p>{{element.article_name}}</p>
+      <p>Descritption: {{element.article_description}}</p>
+      <p>Categories: {{element.categories}}</p>
+      <p>Personal Organization: {{personal_organization}}</p>
+
     {% endfor %}
 
 
