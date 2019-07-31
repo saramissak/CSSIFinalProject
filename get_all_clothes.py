@@ -2,7 +2,6 @@ import jinja2
 import webapp2
 import os
 
-
 from google.appengine.api import users
 from google.appengine.ext import ndb
 from ClothesModel import Clothes
