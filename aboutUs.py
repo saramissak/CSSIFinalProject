@@ -16,6 +16,9 @@ class about(webapp2.RequestHandler):
         self.response.write(aboutus_template.render())
 
 
+
+
+
 class welcome(webapp2.RequestHandler):
     def get(self):
         welcome_template = the_jinja_env.get_template('templates/welcome.html') #html page to be used

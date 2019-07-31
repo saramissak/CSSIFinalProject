@@ -2,6 +2,7 @@ import webapp2
 import jinja2
 import os
 
+from Search import search
 from aboutUs import about
 from aboutUs import welcome
 from ClothesModel import Clothes
@@ -83,5 +84,6 @@ app = webapp2.WSGIApplication([
   ('/all_clothes', AllClothes),
   ('/make_outfits', OutfitHandler),
   ('/about_us', about),
-  ('/welcome', welcome)
+  ('/welcome', welcome),
+  ('/search', search)
 ], debug=True)
