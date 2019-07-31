@@ -16,7 +16,24 @@
 
       function loadPants() {
         // Documentation: ttps://api.jquery.com/jQuery.get/
-        $.get({url: "/pants", success: function(result) {
+        $.get({url: "/pant", success: function(result) {
+            var response = JSON.parse(result);
+            console.log(response);
+            return response;
+          }});
+      }
+
+      function loadShoes() {
+        // Documentation: ttps://api.jquery.com/jQuery.get/
+        $.get({url: "/shoes", success: function(result) {
+            var response = JSON.parse(result);
+            console.log(response);
+            return response;
+          }});
+      }
+      function loadJackets() {
+        // Documentation: ttps://api.jquery.com/jQuery.get/
+        $.get({url: "/jackets", success: function(result) {
             var response = JSON.parse(result);
             console.log(response);
             return response;
@@ -49,10 +66,10 @@
     </nav>
   </header>
     <div class="make_fits_buttons">
-      <input type="image" src="https://image.flaticon.com/icons/svg/343/343273.svg" name="saveForm" class="btTxt submit" id="jacket_icon" style="height:90px; margin:100px"/>
+      <a href="/jackets"><input type="image" src="https://image.flaticon.com/icons/svg/343/343273.svg" name="saveForm" class="btTxt submit" id="jacket_icon" style="height:90px; margin:100px"/></a>
       <a href="/shirt"><input type="image" src="https://image.flaticon.com/icons/svg/286/286964.svg" name="saveForm" class="btTxt submit" id="shirt_icon" style="height:90px; margin:100px"/></a>
-      <a href="/pants"><input type="image" src="https://image.flaticon.com/icons/svg/664/664466.svg" name="saveForm" class="btTxt submit" id="pants_icon" style="height:90px; margin:100px"/></a>
-      <input type="image" src="https://image.flaticon.com/icons/svg/141/141614.svg" name="saveForm" class="btTxt submit" id="shoes_icon" style="height:90px; margin:100px"/>
+      <a href="/pant"><input type="image" src="https://image.flaticon.com/icons/svg/664/664466.svg" name="saveForm" class="btTxt submit" id="pants_icon" style="height:90px; margin:100px"/></a>
+      <a href="/shoes"><input type="image" src="https://image.flaticon.com/icons/svg/141/141614.svg" name="saveForm" class="btTxt submit" id="shoes_icon" style="height:90px; margin:100px"/></a>
     </div>
 
     <script type="text/javascript">
@@ -65,6 +82,8 @@
          }
          function JacketFunction(){
            console.log("click jacket")
+           loadJackets()
+           var pants = loadJackets()
          }
          function ShirtFunction(){
            console.log("click shirt")
@@ -73,9 +92,13 @@
          }
          function PantsFunction(){
            console.log("click pants")
+           loadPants()
+           var pants = loadPants()
          }
          function ShoesFunction(){
            console.log("click shoes")
+           loadShoes()
+           var pants = loadShoes()
          }
     </script>
 

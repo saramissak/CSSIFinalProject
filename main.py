@@ -4,6 +4,9 @@ import os
 import json
 
 from makefits import get_shirts
+from makefits import get_pants
+from makefits import get_jacket
+from makefits import get_shoes
 from Search import search
 from aboutUs import about
 from aboutUs import welcome
@@ -95,6 +98,46 @@ class shirt(webapp2.RequestHandler):
 
         # self.response.write(json.dumps(objects_list))
 
+class pant(webapp2.RequestHandler):
+    def get(self):
+        pant_template = jinja_current_dir.get_template('templates/pants.html') #html page to be used
+
+        pant_list = get_pants()
+
+
+        jinja_dict = {
+            'pants': pant_list
+        }
+        print(jinja_dict)
+        self.response.write(pant_template.render(jinja_dict))
+
+class jackets(webapp2.RequestHandler):
+    def get(self):
+        jacket_template = jinja_current_dir.get_template('templates/jackets.html') #html page to be used
+
+        jacket_list = get_jacket()
+
+
+        jinja_dict = {
+            'jacket': jacket_list
+        }
+        print(jinja_dict)
+        self.response.write(jacket_template.render(jinja_dict))
+
+class shoes(webapp2.RequestHandler):
+    def get(self):
+        shoes_template = jinja_current_dir.get_template('templates/shoes.html') #html page to be used
+
+        shoes_list = get_shoes()
+
+
+        jinja_dict = {
+            'shoes': shoes_list
+        }
+        print(jinja_dict)
+        self.response.write(shoes_template.render(jinja_dict))
+
+        # self.response.write(json.dumps(objects_list))
 
 
 app = webapp2.WSGIApplication([
@@ -106,5 +149,8 @@ app = webapp2.WSGIApplication([
   ('/welcome', welcome),
   # ('/shirtsjson', ShirtsJSON),
   ('/search', search),
-  ('/shirt', shirt)
+  ('/shirt', shirt),
+  ('/pant', pant),
+  ('/jackets', jackets),
+  ('/shoes', shoes),
 ], debug=True)
