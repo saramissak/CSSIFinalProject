@@ -14,9 +14,15 @@
           }});
       }
 
-      function toggleText() {
-        $("#text").toggle();
+      function loadPants() {
+        // Documentation: ttps://api.jquery.com/jQuery.get/
+        $.get({url: "/pants", success: function(result) {
+            var response = JSON.parse(result);
+            console.log(response);
+            return response;
+          }});
       }
+
     </script>
   </head>
 <body>
@@ -44,8 +50,8 @@
   </header>
     <div class="make_fits_buttons">
       <input type="image" src="https://image.flaticon.com/icons/svg/343/343273.svg" name="saveForm" class="btTxt submit" id="jacket_icon" style="height:90px; margin:100px"/>
-      <input type="image" src="https://image.flaticon.com/icons/svg/286/286964.svg" name="saveForm" class="btTxt submit" id="shirt_icon" style="height:90px; margin:100px"/>
-      <input type="image" src="https://image.flaticon.com/icons/svg/664/664466.svg" name="saveForm" class="btTxt submit" id="pants_icon" style="height:90px; margin:100px"/>
+      <a href="/shirt"><input type="image" src="https://image.flaticon.com/icons/svg/286/286964.svg" name="saveForm" class="btTxt submit" id="shirt_icon" style="height:90px; margin:100px"/></a>
+      <a href="/pants"><input type="image" src="https://image.flaticon.com/icons/svg/664/664466.svg" name="saveForm" class="btTxt submit" id="pants_icon" style="height:90px; margin:100px"/></a>
       <input type="image" src="https://image.flaticon.com/icons/svg/141/141614.svg" name="saveForm" class="btTxt submit" id="shoes_icon" style="height:90px; margin:100px"/>
     </div>
 
