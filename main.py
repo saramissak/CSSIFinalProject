@@ -33,7 +33,7 @@ class MainHandler(webapp2.RequestHandler):
     # If the user is logged in...
     if user:
       signout_link_html = '<a href="%s">sign out</a>' % (
-          users.create_logout_url('/'))
+          users.create_logout_url('/sign-in'))
       email_address = user.nickname()
       cssi_user = CssiUser.query().filter(CssiUser.email == email_address).get()
       # If the user is registered...
@@ -131,6 +131,7 @@ class shoes(webapp2.RequestHandler):
         self.response.write(shoes_template.render(jinja_dict))
 
         # self.response.write(json.dumps(objects_list))
+
 
 
 app = webapp2.WSGIApplication([

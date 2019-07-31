@@ -11,6 +11,11 @@ class Clothes(ndb.Model):
     personal_organization = ndb.StringProperty(required = False)
     categories = ndb.StringProperty(required = False)
     number = ndb.IntegerProperty(required = True)
+class outfit(ndb.Model):
+    top=ndb.StringProperty(required = True)
+    bottoms=ndb.StringProperty(required = True)
+    shoes=ndb.StringProperty(required = True)
+    outerwear=ndb.StringProperty(required = True)
 
     def to_dict(self):
         result = {}
