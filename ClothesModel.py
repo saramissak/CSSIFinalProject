@@ -14,5 +14,4 @@ class Clothes(ndb.Model):
     def to_dict(self):
         result = {}
         result["img_url"] = self.img_url
-        result["article_name"] = self.article_name
         return result

@@ -26,12 +26,12 @@ def select_clothing_piece():
 
 def get_shirts():
     clothing_query = Clothes.query()
-    clothing_fetch = clothing_query.fetch()
+    clothing_fetch = clothing_query.filter(Clothes.categories == "shirt").fetch()
     shirt_list = []
-    for clothes in clothing_fetch:
-        if clothes.categories == "shirt":
-            shirt_list.append(clothes)
+    for each in clothing_fetch:
+        shirt_list.append(each.img_url)
     print(shirt_list)
+    print(clothing_fetch)
     return shirt_list
 
 
@@ -41,8 +41,14 @@ class FitsPage(webapp2.RequestHandler):
         make_fits_template = the_jinja_env.get_template('templates/make-fits.html')
         self.response.write(make_fits_template.render())
 
-class ShirtsJSON(webapp2.RequestHandler):
-    def get(self):
-        shirts_list = get_shirts()
-        objects_list = [shirt.to_dict() for shirt in shirts_list]
-        self.response.write(json.dumps(objects_list))
+# class ShirtsJSON(webapp2.RequestHandler):
+#     def get(self):
+#         shirts_list = get_shirts()
+#         objects_list = [shirt.to_dict() for shirt in shirts_list]
+#         list_of_shirts = []
+#         for i in shirt.to_dict():
+#             print(list_of_shirts.append(i))
+#         jinja_dict = {
+#             'shirts': list_of_shirts
+#         }
+#         self.response.write(json.dumps(objects_list))
