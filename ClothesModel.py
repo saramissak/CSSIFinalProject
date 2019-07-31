@@ -10,3 +10,9 @@ class Clothes(ndb.Model):
     personal_organization = ndb.StringProperty(required = False)
     categories = ndb.StringProperty(required = False)
     number = ndb.IntegerProperty(required = True)
+
+    def to_dict(self):
+        result = {}
+        result["img_url"] = self.img_url
+        result["article_name"] = self.article_name
+        return result

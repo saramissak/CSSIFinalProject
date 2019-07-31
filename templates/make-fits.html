@@ -3,6 +3,21 @@
   <head>
     <title>Make a fit</title>
     <link rel="stylesheet" href="../stylesheets/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script>
+      function loadShirts() {
+        // Documentation: ttps://api.jquery.com/jQuery.get/
+        $.get({url: "/shirtsjson", success: function(result) {
+            var response = JSON.parse(result);
+            console.log(response);
+            return response;
+          }});
+      }
+
+      function toggleText() {
+        $("#text").toggle();
+      }
+    </script>
   </head>
 <body>
   <header class="topnav">
@@ -27,11 +42,36 @@
      </ul>
     </nav>
   </header>
-    <div class=make_fits_buttons>
-      <input type="image" src="https://image.flaticon.com/icons/svg/286/286964.svg" name="saveForm" class="btTxt submit" id="saveForm" style="height:90px; margin:100px"/>
-      <input type="image" src="https://image.flaticon.com/icons/svg/664/664466.svg" name="saveForm" class="btTxt submit" id="saveForm" style="height:90px; margin:100px"/>
-      <input type="image" src="https://image.flaticon.com/icons/svg/141/141614.svg" name="saveForm" class="btTxt submit" id="saveForm" style="height:90px; margin:100px"/>
-
+    <div class="make_fits_buttons">
+      <input type="image" src="https://image.flaticon.com/icons/svg/343/343273.svg" name="saveForm" class="btTxt submit" id="jacket_icon" style="height:90px; margin:100px"/>
+      <input type="image" src="https://image.flaticon.com/icons/svg/286/286964.svg" name="saveForm" class="btTxt submit" id="shirt_icon" style="height:90px; margin:100px"/>
+      <input type="image" src="https://image.flaticon.com/icons/svg/664/664466.svg" name="saveForm" class="btTxt submit" id="pants_icon" style="height:90px; margin:100px"/>
+      <input type="image" src="https://image.flaticon.com/icons/svg/141/141614.svg" name="saveForm" class="btTxt submit" id="shoes_icon" style="height:90px; margin:100px"/>
     </div>
+
+    <script type="text/javascript">
+       registerHandlers()
+         function registerHandlers() {
+           document.getElementById("jacket_icon").addEventListener("click", JacketFunction);
+           document.getElementById("shirt_icon").addEventListener("click", ShirtFunction);
+           document.getElementById("pants_icon").addEventListener("click", PantsFunction);
+           document.getElementById("shoes_icon").addEventListener("click", ShoesFunction);
+         }
+         function JacketFunction(){
+           console.log("click jacket")
+         }
+         function ShirtFunction(){
+           console.log("click shirt")
+           loadShirts()
+           var shirts = loadShirts()
+         }
+         function PantsFunction(){
+           console.log("click pants")
+         }
+         function ShoesFunction(){
+           console.log("click shoes")
+         }
+    </script>
+
   </body>
 </html>
