@@ -19,6 +19,7 @@
   padding-left: 2%;
   padding-right: 2%;
   width: 33%;
+  font-family: 'avenir next';
 }
  #middlePerson {
    background-color: #fcd303;
@@ -30,6 +31,7 @@
    padding-left: 2%;
    padding-right: 2%;
    width: 33%;
+   font-family: 'avenir next';
  }
 
  #rightPerson {
@@ -42,6 +44,7 @@
    padding-left: 2%;
    padding-right: 2%;
    width: 33%;
+   font-family: 'avenir next';
  }
 
  #aboutUsHeader {
@@ -50,8 +53,8 @@
 
  html {
    background-color: white;
-   color: #fcd303;
-   font-family: 'avenir next';
+   color: black;
+
 
  }
 
