@@ -100,7 +100,6 @@ class pant(webapp2.RequestHandler):
 
         pant_list = get_pants()
 
-
         jinja_dict = {
             'pants': pant_list
         }
@@ -113,9 +112,8 @@ class jackets(webapp2.RequestHandler):
 
         jacket_list = get_jacket()
 
-
         jinja_dict = {
-            'jacket': jacket_list
+            'jackets': jacket_list
         }
         print(jinja_dict)
         self.response.write(jacket_template.render(jinja_dict))
@@ -126,9 +124,8 @@ class shoes(webapp2.RequestHandler):
 
         shoes_list = get_shoes()
 
-
         jinja_dict = {
-            'shoes': shoes_list
+            'shoes': shoes_list,
         }
         print(jinja_dict)
         self.response.write(shoes_template.render(jinja_dict))
