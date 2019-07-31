@@ -22,7 +22,7 @@ header img {
 }
 
 header li {
-    margin: 35px;
+    margin: 32.5px;
 }
 
 header li a {
@@ -76,6 +76,8 @@ li a, #fit-button{
 h1{
   text-align: center
 }
+
+
 
 .categoryItem img {
   float: right;

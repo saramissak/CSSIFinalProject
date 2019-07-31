@@ -8,26 +8,26 @@
   <body>
     <header class="topnav">
       <img src="https://cdn1.iconfinder.com/data/icons/office-web/128/office-94-512.png">
-      <nav>
+      <nav >
         <ul>
           <li><a href="/welcome">Home</a></li>
-          <li class="is-active"><a href="/all_clothes">Wardrobe</a></li>
-          <li><a href="/about-us">About</a></li>
-          <li><a href="#">Sign Out</a></li>
+          <li><a href="/all_clothes">Wardrobe</a></li>
+          <li><a href="/upload">Upload</a></li>
+          <li><a href="/make_outfits">Make Outfit</a></li>
+          <li><a href="/about_us">About</a></li>
+          <li><a href="/sign-in">Sign Out</a></li>
           <li>
-            <form class="changepage" action="/makefits" method="post">
-
+          <form class="changepage" action="/makefits" method="post">
              <div class="input-field">
                  <input id="search" type="search" required>
                  <label class="label-icon" for="search">
                  <i class="material-icons">search</i></label>
-                </div>
-             </form>
-           </li>
-            </ul>
-              </nav>
-               </header>
-
+              </div>
+          </form>
+        </li>
+       </ul>
+      </nav>
+    </header>
     <form action="/upload" method="post" style= "margin-top: 100px">
       Image you would like to add:<br>
       <input type='text' name='img_url' value=''>
