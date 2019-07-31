@@ -1,7 +1,9 @@
 import webapp2
 import jinja2
 import os
+import json
 
+from makefits import get_shirts
 from Search import search
 from aboutUs import about
 from aboutUs import welcome
@@ -9,7 +11,7 @@ from ClothesModel import Clothes
 from Upload import Upload
 from get_all_clothes import AllClothes
 from makefits import select_clothing_piece
-from makefits import ShirtsJSON
+# from makefits import ShirtsJSON
 
 
 from google.appengine.api import users
@@ -78,6 +80,22 @@ class OutfitHandler(webapp2.RequestHandler):
         make_template = jinja_current_dir.get_template('templates/make-fits.html') #html page to be used
         self.response.write(make_template.render())
 
+class shirt(webapp2.RequestHandler):
+    def get(self):
+        shirt_template = jinja_current_dir.get_template('templates/shirts.html') #html page to be used
+
+        shirts_list = get_shirts()
+
+
+        jinja_dict = {
+            'shirts': shirts_list
+        }
+        print(jinja_dict)
+        self.response.write(shirt_template.render(jinja_dict))
+
+        # self.response.write(json.dumps(objects_list))
+
+
 
 app = webapp2.WSGIApplication([
   ('/sign-in', MainHandler),
@@ -86,6 +104,7 @@ app = webapp2.WSGIApplication([
   ('/make_outfits', OutfitHandler),
   ('/about_us', about),
   ('/welcome', welcome),
-  ('/shirtsjson', ShirtsJSON),
-  ('/search', search)
+  # ('/shirtsjson', ShirtsJSON),
+  ('/search', search),
+  ('/shirt', shirt)
 ], debug=True)
