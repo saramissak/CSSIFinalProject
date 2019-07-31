@@ -33,6 +33,7 @@
     <br>
     <br>
     {% for element in img %}
+<<<<<<< HEAD
       <div class="imagebox">
         <img src="{{element.img_url}}" alt="idk">
         <div class="text">
@@ -44,6 +45,13 @@
       </div>
 
 
+=======
+      <img id="image{{element.number}}" src="{{element.img_url}}" alt="idk">
+      <p>{{element.article_name}}</p>
+      <p>Descritption: {{element.article_description}}</p>
+      <p>Categories: {{element.categories}}</p>
+      <p>Personal Organization: {{personal_organization}}</p>
+>>>>>>> e7492a4a6b99b550017cde9ef72a0fcca4abe037
     {% endfor %}
 
 
