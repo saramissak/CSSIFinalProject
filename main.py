@@ -3,7 +3,11 @@ import jinja2
 import os
 import json
 
+from CSSIUser import CssiUser
 from makefits import get_shirts
+from makefits import get_pants
+from makefits import get_jacket
+from makefits import get_shoes
 from Search import search
 from aboutUs import about
 from aboutUs import welcome
@@ -22,11 +26,6 @@ jinja_current_dir = jinja2.Environment(
     extensions=['jinja2.ext.autoescape'],
     autoescape=True)
 
-
-class CssiUser(ndb.Model):
-  first_name = ndb.StringProperty()
-  last_name = ndb.StringProperty()
-  email = ndb.StringProperty()
 
 class MainHandler(webapp2.RequestHandler):
   def get(self):
@@ -51,7 +50,7 @@ class MainHandler(webapp2.RequestHandler):
         # Offer a registration form for a first-time visitor:
         self.response.write('''
             Welcome to our site, %s!  Please sign up! <br>
-            <form method="post" action="/">
+            <form method="post" action="/welcome">
             <input type="text" name="first_name">
             <input type="text" name="last_name">
             <input type="submit">
@@ -59,7 +58,7 @@ class MainHandler(webapp2.RequestHandler):
             ''' % (email_address, signout_link_html))
     else:
       # If the user isn't logged in...
-      login_url = users.create_login_url('/')
+      login_url = users.create_login_url('/welcome')
       login_html_element = '<a href="%s">Sign in</a>' % login_url
       # Prompt the user to sign in.
       self.response.write('Please log in.<br>' + login_html_element)
@@ -95,6 +94,46 @@ class shirt(webapp2.RequestHandler):
 
         # self.response.write(json.dumps(objects_list))
 
+class pant(webapp2.RequestHandler):
+    def get(self):
+        pant_template = jinja_current_dir.get_template('templates/pants.html') #html page to be used
+
+        pant_list = get_pants()
+
+
+        jinja_dict = {
+            'pants': pant_list
+        }
+        print(jinja_dict)
+        self.response.write(pant_template.render(jinja_dict))
+
+class jackets(webapp2.RequestHandler):
+    def get(self):
+        jacket_template = jinja_current_dir.get_template('templates/jackets.html') #html page to be used
+
+        jacket_list = get_jacket()
+
+
+        jinja_dict = {
+            'jacket': jacket_list
+        }
+        print(jinja_dict)
+        self.response.write(jacket_template.render(jinja_dict))
+
+class shoes(webapp2.RequestHandler):
+    def get(self):
+        shoes_template = jinja_current_dir.get_template('templates/shoes.html') #html page to be used
+
+        shoes_list = get_shoes()
+
+
+        jinja_dict = {
+            'shoes': shoes_list
+        }
+        print(jinja_dict)
+        self.response.write(shoes_template.render(jinja_dict))
+
+        # self.response.write(json.dumps(objects_list))
 
 
 
@@ -107,5 +146,8 @@ app = webapp2.WSGIApplication([
   ('/welcome', welcome),
   # ('/shirtsjson', ShirtsJSON),
   ('/search', search),
-  ('/shirt', shirt)
+  ('/shirt', shirt),
+  ('/pant', pant),
+  ('/jackets', jackets),
+  ('/shoes', shoes),
 ], debug=True)
