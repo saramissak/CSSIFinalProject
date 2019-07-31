@@ -2,6 +2,7 @@ from google.appengine.ext import ndb
 import webapp2
 import os
 
+from CSSIUser import CssiUser
 
 class Clothes(ndb.Model):
     img_url = ndb.StringProperty(required = True)

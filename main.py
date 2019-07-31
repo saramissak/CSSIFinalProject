@@ -3,6 +3,7 @@ import jinja2
 import os
 import json
 
+from CSSIUser import CssiUser
 from makefits import get_shirts
 from makefits import get_pants
 from makefits import get_jacket
@@ -25,11 +26,6 @@ jinja_current_dir = jinja2.Environment(
     extensions=['jinja2.ext.autoescape'],
     autoescape=True)
 
-
-class CssiUser(ndb.Model):
-  first_name = ndb.StringProperty()
-  last_name = ndb.StringProperty()
-  email = ndb.StringProperty()
 
 class MainHandler(webapp2.RequestHandler):
   def get(self):
@@ -54,7 +50,7 @@ class MainHandler(webapp2.RequestHandler):
         # Offer a registration form for a first-time visitor:
         self.response.write('''
             Welcome to our site, %s!  Please sign up! <br>
-            <form method="post" action="/">
+            <form method="post" action="/welcome">
             <input type="text" name="first_name">
             <input type="text" name="last_name">
             <input type="submit">
@@ -62,7 +58,7 @@ class MainHandler(webapp2.RequestHandler):
             ''' % (email_address, signout_link_html))
     else:
       # If the user isn't logged in...
-      login_url = users.create_login_url('/')
+      login_url = users.create_login_url('/welcome')
       login_html_element = '<a href="%s">Sign in</a>' % login_url
       # Prompt the user to sign in.
       self.response.write('Please log in.<br>' + login_html_element)

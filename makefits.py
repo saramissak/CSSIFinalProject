@@ -6,6 +6,7 @@ import jinja2
 import webapp2
 import os
 
+from CSSIUser import CssiUser
 from ClothesModel import Clothes
 from google.appengine.api import urlfetch
 import json
