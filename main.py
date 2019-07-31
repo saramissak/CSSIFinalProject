@@ -3,6 +3,7 @@ import jinja2
 import os
 
 from aboutUs import about
+from aboutUs import welcome
 from ClothesModel import Clothes
 from Upload import Upload
 from get_all_clothes import AllClothes
@@ -72,7 +73,9 @@ class MainHandler(webapp2.RequestHandler):
 
 class OutfitHandler(webapp2.RequestHandler):
     def get(self):
-        self.response.write(select_clothing_piece())
+        make_template = jinja_current_dir.get_template('templates/make-fits.html') #html page to be used
+        self.response.write(make_template.render())
+
 
 app = webapp2.WSGIApplication([
   ('/sign-in', MainHandler),
@@ -80,4 +83,5 @@ app = webapp2.WSGIApplication([
   ('/all_clothes', AllClothes),
   ('/make_outfits', OutfitHandler),
   ('/about_us', about),
+  ('/welcome', welcome)
 ], debug=True)
