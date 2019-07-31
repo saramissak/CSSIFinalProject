@@ -1,7 +1,7 @@
 import jinja2
 import webapp2
 import os
-
+import time
 from ClothesModel import Clothes
 
 
@@ -26,6 +26,7 @@ class Upload(webapp2.RequestHandler):
         #add to database
         user_clothes = Clothes(img_url = img_url, article_name = article_name, article_description = article_description, categories=categories, personal_organization = personal_organization, number = count)
         user_clothes.put()
+        time.sleep(.1)
         #chane the page
         self.redirect('/all_clothes')
 
