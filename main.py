@@ -3,6 +3,7 @@ import jinja2
 import os
 import json
 
+from CSSIUser import CssiUser
 from makefits import get_shirts
 from Search import search
 from aboutUs import about
