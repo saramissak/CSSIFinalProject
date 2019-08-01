@@ -34,7 +34,7 @@ class MainHandler(webapp2.RequestHandler):
     # If the user is logged in...
     if user:
       signout_link_html = '<a href="%s">sign out</a>' % (
-          users.create_logout_url('/index'))
+          users.create_logout_url('/sign-in'))
       email_address = user.nickname()
       cssi_user = CssiUser.query().filter(CssiUser.email == email_address).get()
       # If the user is registered...
@@ -50,15 +50,17 @@ class MainHandler(webapp2.RequestHandler):
       else:
         # Offer a registration form for a first-time visitor:                  #SIGN OUT PAGE
         self.response.write('''
-            <body style="background-color: lightskyblue">
-            <p style="color:white">Would you like to sign out? </p> <br> Click: %s <br>
+            <body style="background-color: skyblue">
+            <p style="color:green">Would you like to sign out? </p> <br> %s <br>
             ''' % (signout_link_html))
     else:
       # If the user isn't logged in...
       login_url = users.create_login_url('/welcome')
-      login_html_element = '<a href="%s">Sign in</a>' % login_url
-      # Prompt the user to sign in.
-      self.response.write('Please sign in.<br>' + login_html_element)          #SIgn in HTML
+      # login_html_element = '<a href="%s">Sign in</a>' % login_url
+      # # Prompt the user to sign in.
+      # self.response.write('Please sign in.<br>' + login_html_element)          #SIgn in HTML
+      # self.response.write(login_url)
+
 
   def post(self):
     # Code to handle a first-time registration from the form:
@@ -76,7 +78,7 @@ class OutfitHandler(webapp2.RequestHandler):
         user = users.get_current_user()
         if user:
             signout_link_html = '<a href="%s">sign out</a>' % (
-              users.create_logout_url('/index'))
+              users.create_logout_url('/sign-in'))
             email_address = user.nickname()
             cssi_user = CssiUser.query().filter(CssiUser.email == email_address).get()
 
