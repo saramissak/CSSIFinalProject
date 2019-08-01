@@ -65,7 +65,7 @@ class MainHandler(webapp2.RequestHandler):
         # Offer a registration form for a first-time visitor:                  #SIGN OUT PAGE
         self.response.write('''
             <body style="background-color: skyblue">
-            <p style="color:green">Would you like to sign out? </p> <br> %s <br>
+            <p style="color:white"; text-align: "center"; border: "3px solid green">Would you like to sign out? </p> <br> %s <br>
             ''' % (signout_link_html))
     else:
       # If the user isn't logged in...
