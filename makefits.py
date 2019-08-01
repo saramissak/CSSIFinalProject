@@ -30,17 +30,38 @@ def get_shirts():
     clothing_fetch = clothing_query.filter(Clothes.categories == "shirt").fetch()
     shirt_list = []
     for each in clothing_fetch:
-        shirt_list.append(each.img_url)
-    print(shirt_list)
-    print(clothing_fetch)
+        shirt_list.append(each)
     return shirt_list
 
+def get_pants():
+    clothing_query = Clothes.query()
+    clothing_fetch = clothing_query.filter(Clothes.categories == "pants").fetch()
+    pant_list = []
+    for each in clothing_fetch:
+        pant_list.append(each)
+    return pant_list
 
-class FitsPage(webapp2.RequestHandler):
-    def get(self):
-        # This template uses jQuery, which simplifies JavaScript DOM manipulation
-        make_fits_template = the_jinja_env.get_template('templates/make-fits.html')
-        self.response.write(make_fits_template.render())
+def get_shoes():
+    clothing_query = Clothes.query()
+    clothing_fetch = clothing_query.filter(Clothes.categories == "shoes").fetch()
+    shoes_list = []
+    for each in clothing_fetch:
+        shoes_list.append(each)
+    return shoes_list
+
+def get_jacket():
+    clothing_query = Clothes.query()
+    clothing_fetch = clothing_query.filter(Clothes.categories == "jacket").fetch()
+    jacket_list = []
+    for each in clothing_fetch:
+        jacket_list.append(each)
+    return jacket_list
+
+# class FitsPage(webapp2.RequestHandler):
+#     def get(self):
+#         # This template uses jQuery, which simplifies JavaScript DOM manipulation
+#         make_fits_template = the_jinja_env.get_template('templates/make-fits.html')
+#         self.response.write(make_fits_template.render())
 
 # class ShirtsJSON(webapp2.RequestHandler):
 #     def get(self):

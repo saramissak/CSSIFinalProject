@@ -5,6 +5,9 @@ import json
 
 from CSSIUser import CssiUser
 from makefits import get_shirts
+from makefits import get_pants
+from makefits import get_jacket
+from makefits import get_shoes
 from Search import search
 from aboutUs import about
 from aboutUs import welcome
@@ -73,24 +76,98 @@ class MainHandler(webapp2.RequestHandler):
 
 class OutfitHandler(webapp2.RequestHandler):
     def get(self):
-        make_template = jinja_current_dir.get_template('templates/make-fits.html') #html page to be used
-        self.response.write(make_template.render())
+        user = users.get_current_user()
+        if user:
+            signout_link_html = '<a href="%s">sign out</a>' % (
+              users.create_logout_url('/sign-in'))
+            email_address = user.nickname()
+            cssi_user = CssiUser.query().filter(CssiUser.email == email_address).get()
+
+            search = self.request.get("search")
+            clothes_query = Clothes.query()
+            list_of_search = []
+
+            make_template = jinja_current_dir.get_template('templates/make-fits.html') #html page to be used
+            list_of_results = Clothes.query().filter(Clothes.personal_organization == search).fetch()
+            list_len = len(list_of_results)
+            if list_len > 0:
+                list_of_results[0].personal_organization
+            for match in list_of_results:
+                if match.key not in list_of_search:
+                    list_of_search.append(match)
+
+            dict = {
+                'img': list_of_search
+            }
+            print(list_of_search)
+            self.response.write(make_template.render(dict))
+        else:
+            # If the user isn't logged in...
+            login_url = users.create_login_url('/welcome')
+            login_html_element = '<a href="%s">Sign in</a>' % login_url
+            # Prompt the user to sign in.
+
 
 class shirt(webapp2.RequestHandler):
     def get(self):
         shirt_template = jinja_current_dir.get_template('templates/shirts.html') #html page to be used
-
         shirts_list = get_shirts()
-
-
+        selected= "var_string"
         jinja_dict = {
-            'shirts': shirts_list
+            'shirts': shirts_list,
+            'selected': selected
         }
         print(jinja_dict)
         self.response.write(shirt_template.render(jinja_dict))
+    def post(self):
+        selected = self.request.get("{{selected}}")
+
+
+        user_outfits = outfits(top= selected)
+        user_outfits.put()
+
+class pant(webapp2.RequestHandler):
+    def get(self):
+        pant_template = jinja_current_dir.get_template('templates/pants.html') #html page to be used
+
+        pant_list = get_pants()
+
+        jinja_dict = {
+            'pants': pant_list
+        }
+        print(jinja_dict)
+        self.response.write(pant_template.render(jinja_dict))
+
+class jackets(webapp2.RequestHandler):
+    def get(self):
+        jacket_template = jinja_current_dir.get_template('templates/jackets.html') #html page to be used
+
+        jacket_list = get_jacket()
+
+        jinja_dict = {
+            'jackets': jacket_list
+        }
+        print(jinja_dict)
+        self.response.write(jacket_template.render(jinja_dict))
+
+class shoes(webapp2.RequestHandler):
+    def get(self):
+        shoes_template = jinja_current_dir.get_template('templates/shoes.html') #html page to be used
+
+        shoes_list = get_shoes()
+
+        jinja_dict = {
+            'shoes': shoes_list,
+        }
+        print(jinja_dict)
+        self.response.write(shoes_template.render(jinja_dict))
 
         # self.response.write(json.dumps(objects_list))
 
+class indexHandler(webapp2.RequestHandler):
+    def get(self):
+        index_template = jinja_current_dir.get_template('templates/index.html') #html page to be used
+        self.response.write(index_template.render())
 
 
 app = webapp2.WSGIApplication([
@@ -102,5 +179,9 @@ app = webapp2.WSGIApplication([
   ('/welcome', welcome),
   # ('/shirtsjson', ShirtsJSON),
   ('/search', search),
-  ('/shirt', shirt)
+  ('/shirt', shirt),
+  ('/pant', pant),
+  ('/jackets', jackets),
+  ('/shoes', shoes),
+  ('/index', indexHandler)
 ], debug=True)

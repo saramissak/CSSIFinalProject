@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
+    <link rel="stylesheet" href="../stylesheets/style.css">
+
     <meta charset="utf-8">
-    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Welcome</title>
   </head>
-  <body>
-    <head>
-      <title>Home</title>
-      <link rel="stylesheet" href="../stylesheets/style.css">
-    </head>
   <body>
     <header class="topnav">
       <img src="https://cdn1.iconfinder.com/data/icons/office-web/128/office-94-512.png">
@@ -19,7 +17,7 @@
           <li><a href="/upload">Upload</a></li>
           <li><a href="/make_outfits">Make Outfit</a></li>
           <li><a href="/about_us">About</a></li>
-          <li><a href="/sign-in">Sign Out</a></li>
+          <li><a href="/sign-in">Sign In</a></li>
           <li>
           <form class="changepage" action="/search" method="get">
              <div class="input-field">
@@ -36,17 +34,7 @@
     <br>
     <br>
     <br>
-    <br>
-    {% for element in pants %}
-      <div class="image">
-        <img src="{{element.img_url}}" alt="idk">
-        <div class="textwords">
-          <p>Name: {{element.article_name}}</p>
-          <p>Description: {{element.article_description}}</p>
-          <p>Categories: {{element.categories}}</p>
-          <p>Personal Organization: {{element.personal_organization}}</p>
-        </div>
-      </div>
-    {% endfor %}
+
+    <h1 style="text-aling:center"> Please Login!</h1>
   </body>
 </html>

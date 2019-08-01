@@ -37,7 +37,7 @@
     <br>
     <br>
     <br>
-    {% for element in pants %}
+    {% for element in jackets %}
       <div class="image">
         <img src="{{element.img_url}}" alt="idk">
         <div class="textwords">
@@ -48,5 +48,11 @@
         </div>
       </div>
     {% endfor %}
+
+      {% for element in jackets %}
+      <img id="{{element.number}}" class="notActive{{element.number}}" style = "width: 20%" src="{{element.img_url}}" alt="none">
+
+        <br>
+      {% endfor %}
   </body>
 </html>

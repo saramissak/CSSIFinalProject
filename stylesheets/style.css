@@ -64,7 +64,7 @@ li a, #fit-button{
 }
 
 #fit-button{
-  margin-top: 90px;
+  margin-top: 20px;
   display: inline-block;
   text-align: center;
   padding-right: 5%;
@@ -80,16 +80,53 @@ h1{
 
 
 .categoryItem img {
-  float: right;
-  width: 25%;
+  float: left;
+  height:20%;
+  width:20%;
   padding: 5px;
   min-width: 20%;
   max-width: 20%;
   display: flex;
   flex-wrap: wrap;
+  background-position: 50% 50%;
+  background-repeat:   no-repeat;
+  background-size:     cover;
 
 }
 
 .is-active{
   background-color: yellow;
+}
+
+.-title{
+  text-align: left;
+.imagebox {
+display: inline-block;
+border-radius: 50%;
+border: 1px solid #ddd;
+border-radius: 4px;
+padding: 5px;
+display: inline-block;
+}
+.imagebox img{
+  width:200px;
+  height:200px;
+}
+.text{
+   text-align: center;
+}
+.image {
+display: inline-block;
+border-radius: 50%;
+border: 1px solid #ddd;
+border-radius: 4px;
+padding: 5px;
+display: inline-block;
+}
+.image img{
+  width:200px;
+  height:200px;
+}
+.textwords{
+   text-align: center;
 }
