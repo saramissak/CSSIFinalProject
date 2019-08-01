@@ -158,6 +158,10 @@ class shoes(webapp2.RequestHandler):
 
         # self.response.write(json.dumps(objects_list))
 
+class indexHandler(webapp2.RequestHandler):
+    def get(self):
+        index_template = jinja_current_dir.get_template('templates/index.html') #html page to be used
+        self.response.write(index_template.render())
 
 
 app = webapp2.WSGIApplication([
@@ -173,4 +177,5 @@ app = webapp2.WSGIApplication([
   ('/pant', pant),
   ('/jackets', jackets),
   ('/shoes', shoes),
+  ('/index', indexHandler)
 ], debug=True)
