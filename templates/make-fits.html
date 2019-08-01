@@ -7,7 +7,7 @@
     <script>
       function loadShirts() {
         // Documentation: ttps://api.jquery.com/jQuery.get/
-        $.get({url: "/shirtsjson", success: function(result) {
+        $.get({url: "/shirts", success: function(result) {
             var response = JSON.parse(result);
             console.log(response);
             return response;
@@ -102,7 +102,7 @@
            var pants = loadShoes()
          }
     </script>
-    {% for element in img %}
+    <!-- {% for element in img %}
       <div class="image">
         <img src="{{element.img_url}}" alt="idk">
         <div class="textwords">
@@ -112,6 +112,6 @@
           <p>Personal Organization: {{element.personal_organization}}</p>
         </div>
       </div>
-    {% endfor %}
+    {% endfor %} -->
   </body>
 </html>
