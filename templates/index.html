@@ -1,6 +1,23 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
+    <style media="screen">
+    #switch {
+    display: block;
+    width: 19%;
+    border-radius: 25px;
+    background-color: #99ff99;
+    padding: 14px 28px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    }
+
+    #switch:hover {
+    background-color: skyblue;
+    color: black;
+    }
+    </style>
     <link rel="stylesheet" href="../stylesheets/style.css">
 
     <meta charset="utf-8">
@@ -17,7 +34,7 @@
           <li><a href="/upload">Upload</a></li>
           <li><a href="/make_outfits">Make Outfit</a></li>
           <li><a href="/about_us">About</a></li>
-          <li><a href="/sign-in">Sign In</a></li>
+          <li><a href="/sign-in">Sign In/Out</a></li>
           <li>
           <form class="changepage" action="/search" method="get">
              <div class="input-field">
@@ -34,7 +51,14 @@
     <br>
     <br>
     <br>
+    <br>
 
-    <h1 style="text-aling:center"> Please Login!</h1>
+    <center>
+    <h1 style="text-aling:center"> Welcome to Organize it! </h1>
+    <h3>Go to your homepage or log in!</h3>
+    <form class="goto" action="/welcome" method="get">
+        <input id='switch' type="submit" name="goto" value="Homepage and/or Sign-in">
+    </form>
+  </center>
   </body>
 </html>

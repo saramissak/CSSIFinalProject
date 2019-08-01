@@ -3,6 +3,7 @@ import jinja2
 import os
 import json
 
+from ClothesModel import ourPics
 from CSSIUser import CssiUser
 from ClothesModel import outfit
 from makefits import get_shirts
@@ -15,6 +16,7 @@ from aboutUs import about
 from aboutUs import welcome
 from ClothesModel import Clothes
 from Upload import Upload
+
 from get_all_clothes import AllClothes
 from makefits import select_clothing_piece
 
@@ -25,11 +27,12 @@ from webapp2_extras import sessions
 from google.appengine.api import users
 from google.appengine.ext import ndb
 
+
+
 jinja_current_dir = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
     extensions=['jinja2.ext.autoescape'],
     autoescape=True)
-
 
 class MainHandler(webapp2.RequestHandler):
   def get(self):
@@ -37,7 +40,7 @@ class MainHandler(webapp2.RequestHandler):
     # If the user is logged in...
     if user:
       signout_link_html = '<a href="%s">sign out</a>' % (
-          users.create_logout_url('/sign-in'))
+          users.create_logout_url('/'))
       email_address = user.nickname()
       cssi_user = CssiUser.query().filter(CssiUser.email == email_address).get()
       # If the user is registered...
@@ -51,21 +54,18 @@ class MainHandler(webapp2.RequestHandler):
               signout_link_html))
       # If the user isn't registered...
       else:
-        # Offer a registration form for a first-time visitor:
+        # Offer a registration form for a first-time visitor:                  #SIGN OUT PAGE
         self.response.write('''
-            Welcome to our site, %s!  Please sign up! <br>
-            <form method="post" action="/welcome">
-            <input type="text" name="first_name">
-            <input type="text" name="last_name">
-            <input type="submit">
-            </form><br> %s <br>
-            ''' % (email_address, signout_link_html))
+            <body style="background-color: skyblue">
+            <p style="color:white"; text-align: "center"; border: "3px solid green">Would you like to sign out? </p> <br> %s <br>
+            ''' % (signout_link_html))
     else:
       # If the user isn't logged in...
       login_url = users.create_login_url('/welcome')
       login_html_element = '<a href="%s">Sign in</a>' % login_url
       # Prompt the user to sign in.
-      self.response.write('Please log in.<br>' + login_html_element)
+      self.response.write('Please sign in.<br>' + login_html_element)          #SIgn in HTML
+
 
   def post(self):
     # Code to handle a first-time registration from the form:
@@ -78,21 +78,22 @@ class MainHandler(webapp2.RequestHandler):
     self.response.write('Thanks for signing up, %s! <br><a href="/">Home</a>' %
         cssi_user.first_name)
 
+
 class OutfitHandler(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         if user:
             signout_link_html = '<a href="%s">sign out</a>' % (
-              users.create_logout_url('/sign-in'))
+              users.create_logout_url('/'))
             email_address = user.nickname()
-            cssi_user = CssiUser.query().filter(CssiUser.email == email_address).get()
+            cssi_user = CssiUser.query()
 
             search = self.request.get("search")
-            clothes_query = Clothes.query()
+            clothes_query = Clothes.query().filter(Clothes.user == user.email())
             list_of_search = []
 
             make_template = jinja_current_dir.get_template('templates/make-fits.html') #html page to be used
-            list_of_results = Clothes.query().filter(Clothes.personal_organization == search).fetch()
+            list_of_results = clothes_query.filter(Clothes.personal_organization == search).fetch()
             list_len = len(list_of_results)
             if list_len > 0:
                 list_of_results[0].personal_organization
@@ -107,7 +108,7 @@ class OutfitHandler(webapp2.RequestHandler):
             self.response.write(make_template.render(dict))
         else:
             # If the user isn't logged in...
-            login_url = users.create_login_url('/welcome')
+            login_url = users.create_login_url('/')
             login_html_element = '<a href="%s">Sign in</a>' % login_url
             # Prompt the user to sign in.
 
@@ -244,7 +245,14 @@ app = webapp2.WSGIApplication([
   ('/pant', pant),
   ('/jackets', jackets),
   ('/shoes', shoes),
+<<<<<<< HEAD
   ('/index', indexHandler),
   # ('/made_outfits', MadeOutfits),
   ('/cart', OutfitCart),
 ], config=config, debug=True)
+=======
+  ('/', indexHandler),
+
+  # ('made_outfits', MadeOutfits)
+], debug=True)
+>>>>>>> 4026e6af22f372ce67c2345c4b0dd231b5950803
