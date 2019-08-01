@@ -4,7 +4,7 @@ import os
 
 from ClothesModel import Clothes
 from CSSIUser import CssiUser
-from google.appengine.api import users
+from google.appengine.api import users, images
 
 
 
@@ -17,6 +17,10 @@ class about(webapp2.RequestHandler):
     def get(self):
         aboutus_template = the_jinja_env.get_template('templates/aboutus.html') #html page to be used
         self.response.write(aboutus_template.render())
+
+    def post(self):
+        profile_Pic = self.request.get("pic")
+        # pic_resize = images.resize(profile_Pic, 256, 256)
 
 class welcome(webapp2.RequestHandler):
     def get(self):

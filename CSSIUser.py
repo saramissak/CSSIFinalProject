@@ -13,3 +13,4 @@ class CssiUser(ndb.Model):
   first_name = ndb.StringProperty()
   last_name = ndb.StringProperty()
   email = ndb.StringProperty()
+  profile_Pic = ndb.BlobProperty()
