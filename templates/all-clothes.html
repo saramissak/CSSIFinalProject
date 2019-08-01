@@ -3,7 +3,6 @@
   <head>
     <title>Make a fit</title>
     <link rel="stylesheet" href="../stylesheets/style.css">
-    <!--<script src="click-image.js"></script>-->
     <style media="screen">
       .active {
         border: solid yellow thick;
@@ -40,41 +39,37 @@
      </ul>
     </nav>
   </header>
+      <h1>All Clothes</h1>
+         {% for element in all_clothes %}
+           <div class="imagebox">
+             <img src="{{element.img_url}}" alt="idk">
+             <div class="text">
+               <p>Name: {{element.article_name}}</p>
+               <p>Description: {{element.article_description}}</p>
+               <p>Categories: {{element.categories}}</p>
+               <p>Personal Organization: {{element.personal_organization}}</p>
+             </div>
+           </div>
+            <script type="text/javascript">
+               registerHandlers()
+                 function registerHandlers() {
+                   document.getElementById({{element.number}}).addEventListener("click", myFunction);
+                   console.log('TEST')
+                 }
+                 function myFunction(event) {
+                   // {{counter}} += 1
+                   console.log(event.target)
+                   var list = document.getElementsByClassName("active")
 
-           <h1>All Clothes</h1>
+                   for(var i = 0; i< list.length; i++){
+                     list[i].className = 'notActive{{element.number}}'
+                   }
 
-             {% for element in all_clothes %}
-               <div class="imagebox">
-                 <img src="{{element.img_url}}" alt="idk">
-                 <div class="text">
-                   <p>Name: {{element.article_name}}</p>
-                   <p>Description: {{element.article_description}}</p>
-                   <p>Categories: {{element.categories}}</p>
-                   <p>Personal Organization: {{element.personal_organization}}</p>
-                 </div>
-               </div>
-                <script type="text/javascript">
-                   registerHandlers()
-                     function registerHandlers() {
-                       document.getElementById({{element.number}}).addEventListener("click", myFunction);
-                       console.log('TEST')
-                     }
-                     function myFunction(event) {
-                       // {{counter}} += 1
-                       console.log(event.target)
-                       var list = document.getElementsByClassName("active")
-
-                       for(var i = 0; i< list.length; i++){
-                         list[i].className = 'notActive{{element.number}}'
-                       }
-
-                       event.target.className = 'active'
-                       {{selected}} = {{element.number}};
-                       console.log({{selected}})
-                     }
-
-                </script>
-        
-             {% endfor %}
+                   event.target.className = 'active'
+                   {{selected}} = {{element.number}};
+                   console.log({{selected}})
+                 }
+            </script>
+         {% endfor %}
   </body>
 </html>
