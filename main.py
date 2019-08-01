@@ -245,14 +245,7 @@ app = webapp2.WSGIApplication([
   ('/pant', pant),
   ('/jackets', jackets),
   ('/shoes', shoes),
-<<<<<<< HEAD
-  ('/index', indexHandler),
+  ('/', indexHandler),
   # ('/made_outfits', MadeOutfits),
   ('/cart', OutfitCart),
 ], config=config, debug=True)
-=======
-  ('/', indexHandler),
-
-  # ('made_outfits', MadeOutfits)
-], debug=True)
->>>>>>> 4026e6af22f372ce67c2345c4b0dd231b5950803
