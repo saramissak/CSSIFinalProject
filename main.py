@@ -112,13 +112,19 @@ class shirt(webapp2.RequestHandler):
     def get(self):
         shirt_template = jinja_current_dir.get_template('templates/shirts.html') #html page to be used
         shirts_list = get_shirts()
+        selected= "var_string"
         jinja_dict = {
-            'shirts': shirts_list
+            'shirts': shirts_list,
+            'selected': selected
         }
         print(jinja_dict)
         self.response.write(shirt_template.render(jinja_dict))
+    def post(self):
+        selected = self.request.get("{{selected}}")
 
-        # self.response.write(json.dumps(objects_list))
+
+        user_outfits = outfits(top= selected)
+        user_outfits.put()
 
 class pant(webapp2.RequestHandler):
     def get(self):
