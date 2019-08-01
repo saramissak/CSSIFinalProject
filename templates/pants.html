@@ -38,9 +38,15 @@
     <br>
     <br>
     {% for element in pants %}
-        <br>
-        <img src="{{element}}" alt="idk" width="30%">
-
+      <div class="image">
+        <img src="{{element.img_url}}" alt="idk">
+        <div class="textwords">
+          <p>Name: {{element.article_name}}</p>
+          <p>Description: {{element.article_description}}</p>
+          <p>Categories: {{element.categories}}</p>
+          <p>Personal Organization: {{element.personal_organization}}</p>
+        </div>
+      </div>
     {% endfor %}
   </body>
 </html>

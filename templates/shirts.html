@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
+    <style media="screen">
+      .active {
+        border: solid yellow thick;
+      }
+      {% for element in shirts %}
+        .notActive{{element.number}} {
+          border: solid white thick;
+        }
+      {% endfor %}
+    </style>
     <meta charset="utf-8">
     <title></title>
   </head>
@@ -38,9 +48,42 @@
     <br>
     <br>
     {% for element in shirts %}
-        <br>
-        <img src="{{element}}" alt="idk" width="30%">
+      <div>
+        <div class="image">
+          <img src="{{element.img_url}}" alt="idk" id = {{element.number}}>
+          <div class="textwords">
+            <p>Name: {{element.article_name}}</p>
+            <p>Description: {{element.article_description}}</p>
+            <p>Categories: {{element.categories}}</p>
+            <p>Personal Organization: {{element.personal_organization}}</p>
+          </div>
+        </div>
+      </div>
+      <script type="text/javascript">
+         registerHandlers()
+           function registerHandlers() {
+             document.getElementById({{element.number}}).addEventListener("click", myFunction);
+             console.log('TEST')
+           }
+           function myFunction(event) {
+             // {{counter}} += 1
+             console.log(event.target)
+             var list = document.getElementsByClassName("active")
 
+             for(var i = 0; i< list.length; i++){
+               list[i].className = 'notActive{{element.number}}'
+               console.log('not')
+             }
+
+             event.target.className = 'active'
+             {{selected}} = {{element.number}};
+             console.log({{selected}})
+           }
+
+      </script>
     {% endfor %}
+    <form class="submit" action="/make_outfits" method="get">
+      <input type="submit" name='{{selected}}' value="upload">
+    </form>
   </body>
 </html>

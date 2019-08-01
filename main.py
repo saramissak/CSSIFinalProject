@@ -77,32 +77,54 @@ class MainHandler(webapp2.RequestHandler):
 class OutfitHandler(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
-        # If the user is logged in...
         if user:
-          signout_link_html = '<a href="%s">sign out</a>' % (
+            signout_link_html = '<a href="%s">sign out</a>' % (
               users.create_logout_url('/sign-in'))
-          email_address = user.nickname()
-          cssi_user = CssiUser.query().filter(CssiUser.email == email_address).get()
-          make_template = jinja_current_dir.get_template('templates/make-fits.html') #html page to be used
-          self.response.write(make_template.render())
+            email_address = user.nickname()
+            cssi_user = CssiUser.query().filter(CssiUser.email == email_address).get()
+
+            search = self.request.get("search")
+            clothes_query = Clothes.query()
+            list_of_search = []
+
+            make_template = jinja_current_dir.get_template('templates/make-fits.html') #html page to be used
+            list_of_results = Clothes.query().filter(Clothes.personal_organization == search).fetch()
+            list_len = len(list_of_results)
+            if list_len > 0:
+                list_of_results[0].personal_organization
+            for match in list_of_results:
+                if match.key not in list_of_search:
+                    list_of_search.append(match)
+
+            dict = {
+                'img': list_of_search
+            }
+            print(list_of_search)
+            self.response.write(make_template.render(dict))
         else:
             # If the user isn't logged in...
             login_url = users.create_login_url('/welcome')
             login_html_element = '<a href="%s">Sign in</a>' % login_url
             # Prompt the user to sign in.
-            self.response.write('Please log in.<br>' + login_html_element)
+
 
 class shirt(webapp2.RequestHandler):
     def get(self):
         shirt_template = jinja_current_dir.get_template('templates/shirts.html') #html page to be used
         shirts_list = get_shirts()
+        selected= "var_string"
         jinja_dict = {
-            'shirts': shirts_list
+            'shirts': shirts_list,
+            'selected': selected
         }
         print(jinja_dict)
         self.response.write(shirt_template.render(jinja_dict))
+    def post(self):
+        selected = self.request.get("{{selected}}")
 
-        # self.response.write(json.dumps(objects_list))
+
+        user_outfits = outfits(top= selected)
+        user_outfits.put()
 
 class pant(webapp2.RequestHandler):
     def get(self):
@@ -142,6 +164,10 @@ class shoes(webapp2.RequestHandler):
 
         # self.response.write(json.dumps(objects_list))
 
+class indexHandler(webapp2.RequestHandler):
+    def get(self):
+        index_template = jinja_current_dir.get_template('templates/index.html') #html page to be used
+        self.response.write(index_template.render())
 
 
 app = webapp2.WSGIApplication([
@@ -157,4 +183,5 @@ app = webapp2.WSGIApplication([
   ('/pant', pant),
   ('/jackets', jackets),
   ('/shoes', shoes),
+  ('/index', indexHandler)
 ], debug=True)

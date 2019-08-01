@@ -7,7 +7,7 @@
     <script>
       function loadShirts() {
         // Documentation: ttps://api.jquery.com/jQuery.get/
-        $.get({url: "/shirtsjson", success: function(result) {
+        $.get({url: "/shirts", success: function(result) {
             var response = JSON.parse(result);
             console.log(response);
             return response;
@@ -54,13 +54,13 @@
         <li><a href="/about_us">About</a></li>
         <li><a href="/sign-in">Sign Out</a></li>
         <li>
-        <form class="changepage" action="/makefits" method="post">
-           <div class="input-field">
-               <input id="search" type="search" required>
-               <label class="label-icon" for="search">
-               <i class="material-icons">search</i></label>
-            </div>
-        </form>
+          <form class="changepage" action="/search" method="get">
+             <div class="input-field">
+                 <input id="search" name="search" type="search" required>
+                 <label class="label-icon" for="search">
+                 <i class="material-icons">search</i></label>
+              </div>
+          </form>
       </li>
      </ul>
     </nav>
@@ -71,6 +71,7 @@
       <a href="/pant"><input type="image" src="https://image.flaticon.com/icons/svg/664/664466.svg" name="saveForm" class="btTxt submit" id="pants_icon" style="height:90px; margin:100px"/></a>
       <a href="/shoes"><input type="image" src="https://image.flaticon.com/icons/svg/141/141614.svg" name="saveForm" class="btTxt submit" id="shoes_icon" style="height:90px; margin:100px"/></a>
     </div>
+
 
     <script type="text/javascript">
        registerHandlers()
@@ -101,6 +102,16 @@
            var pants = loadShoes()
          }
     </script>
-
+    <!-- {% for element in img %}
+      <div class="image">
+        <img src="{{element.img_url}}" alt="idk">
+        <div class="textwords">
+          <p>Name: {{element.article_name}}</p>
+          <p>Description: {{element.article_description}}</p>
+          <p>Categories: {{element.categories}}</p>
+          <p>Personal Organization: {{element.personal_organization}}</p>
+        </div>
+      </div>
+    {% endfor %} -->
   </body>
 </html>
