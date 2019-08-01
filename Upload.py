@@ -18,6 +18,8 @@ the_jinja_env = jinja2.Environment(
 class Upload(webapp2.RequestHandler):
     def post(self):
         count = 0
+        user = users.get_current_user()
+
         for ele in Clothes.query().fetch():
             count += 1
         #get information from the form
@@ -28,7 +30,7 @@ class Upload(webapp2.RequestHandler):
         personal_organization = self.request.get("personal_organization")
 
         #add to database
-        user_clothes = Clothes(img_url = img_url, article_name = article_name, article_description = article_description, categories=categories, personal_organization = personal_organization, number = count)
+        user_clothes = Clothes(user= user.email(),img_url = img_url, article_name = article_name, article_description = article_description, categories=categories, personal_organization = personal_organization, number = count)
         user_clothes.put()
         time.sleep(.1)
         #chane the page
@@ -50,7 +52,7 @@ class Upload(webapp2.RequestHandler):
             cssi_user = CssiUser.query().filter(CssiUser.email == email_address).get()
         else:
             # If the user isn't logged in...
-            login_url = users.create_login_url('/welcome')
+            login_url = users.create_login_url('/')
             login_html_element = '<a href="%s">Sign in</a>' % login_url
             # Prompt the user to sign in.
             self.response.write('Please log in.<br>' + login_html_element)

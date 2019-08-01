@@ -20,7 +20,7 @@ class AllClothes(webapp2.RequestHandler):
         if user:
             upload_template = the_jinja_env.get_template('templates/all-clothes.html') #html page to be used
 
-            clothes_query = Clothes.query()
+            clothes_query = Clothes.query().filter(Clothes.user == user.email())
             clothes_fetch = clothes_query.fetch()
             selected= "var_string"
             # count = "count"
@@ -40,7 +40,7 @@ class AllClothes(webapp2.RequestHandler):
 
         else:
           # If the user isn't logged in...
-          login_url = users.create_login_url('/welcome')
+          login_url = users.create_login_url('/')
           login_html_element = '<a href="%s">Sign in</a>' % login_url
           # Prompt the user to sign in.
           self.response.write('Please log in.<br>' + login_html_element)

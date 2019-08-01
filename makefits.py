@@ -6,6 +6,7 @@ import jinja2
 import webapp2
 import os
 
+from google.appengine.api import users
 from CSSIUser import CssiUser
 from ClothesModel import Clothes
 from google.appengine.api import urlfetch
@@ -16,33 +17,38 @@ the_jinja_env = jinja2.Environment(
     extensions=['jinja2.ext.autoescape'],
     autoescape=True)
 
+user = users.get_current_user()
 
 def select_clothing_piece():
     make_outfits = Clothes.query(projection=[Clothes.categories], distinct=True)
-    make_outfits_fetch = make_outfits.fetch()
+    user = users.get_current_user()
+
+    make_outfits_fetch = make_outfits.filter(Clothes.user == user.email()).fetch()
     outfit_list = []
     for item in make_outfits_fetch:
         outfit_list.append(item.categories)
     return outfit_list
 
+
 def get_shirts():
-    clothing_query = Clothes.query()
-    clothing_fetch = clothing_query.filter(Clothes.categories == "shirt").fetch()
+    clothing_query = Clothes.query().filter(Clothes.user == user.email())
+    clothing_fetch = clothing_query.filter(Clothes.categories == "shirt" ).fetch()
     shirt_list = []
+    print user.email()
     for each in clothing_fetch:
         shirt_list.append(each)
     return shirt_list
 
 def get_pants():
-    clothing_query = Clothes.query()
-    clothing_fetch = clothing_query.filter(Clothes.categories == "pants").fetch()
+    clothing_query = Clothes.query().filter(Clothes.user == user.email())
+    clothing_fetch = clothing_query.filter(Clothes.categories == "pants" ).fetch()
     pant_list = []
     for each in clothing_fetch:
         pant_list.append(each)
     return pant_list
 
 def get_shoes():
-    clothing_query = Clothes.query()
+    clothing_query = Clothes.query().filter(Clothes.user == user.email())
     clothing_fetch = clothing_query.filter(Clothes.categories == "shoes").fetch()
     shoes_list = []
     for each in clothing_fetch:
@@ -50,7 +56,7 @@ def get_shoes():
     return shoes_list
 
 def get_jacket():
-    clothing_query = Clothes.query()
+    clothing_query = Clothes.query().filter(Clothes.user == user.email())
     clothing_fetch = clothing_query.filter(Clothes.categories == "jacket").fetch()
     jacket_list = []
     for each in clothing_fetch:
