@@ -76,11 +76,17 @@ class MainHandler(webapp2.RequestHandler):
 
 class OutfitHandler(webapp2.RequestHandler):
     def get(self):
+        user = users.get_current_user()
         if user:
             signout_link_html = '<a href="%s">sign out</a>' % (
               users.create_logout_url('/sign-in'))
             email_address = user.nickname()
             cssi_user = CssiUser.query().filter(CssiUser.email == email_address).get()
+
+            search = self.request.get("search")
+            clothes_query = Clothes.query()
+            list_of_search = []
+
             make_template = jinja_current_dir.get_template('templates/make-fits.html') #html page to be used
             list_of_results = Clothes.query().filter(Clothes.personal_organization == search).fetch()
             list_len = len(list_of_results)
