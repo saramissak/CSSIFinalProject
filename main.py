@@ -4,6 +4,7 @@ import os
 import json
 
 from CSSIUser import CssiUser
+from ClothesModel import outfit
 from makefits import get_shirts
 from makefits import get_pants
 from makefits import get_jacket
@@ -119,12 +120,14 @@ class shirt(webapp2.RequestHandler):
         }
         print(jinja_dict)
         self.response.write(shirt_template.render(jinja_dict))
+
     def post(self):
-        selected = self.request.get("{{selected}}")
-
-
-        user_outfits = outfits(top= selected)
+        selected = self.request.get("var_string")
+        print("Selected outfit " + selected)
+        user_outfits = outfit(top = selected.get())
         user_outfits.put()
+        self.redirect('/make_outfits')
+
 
 class pant(webapp2.RequestHandler):
     def get(self):
@@ -164,6 +167,10 @@ class shoes(webapp2.RequestHandler):
 
         # self.response.write(json.dumps(objects_list))
 
+class indexHandler(webapp2.RequestHandler):
+    def get(self):
+        index_template = jinja_current_dir.get_template('templates/index.html') #html page to be used
+        self.response.write(index_template.render())
 
 
 app = webapp2.WSGIApplication([
@@ -179,4 +186,5 @@ app = webapp2.WSGIApplication([
   ('/pant', pant),
   ('/jackets', jackets),
   ('/shoes', shoes),
+  ('/index', indexHandler)
 ], debug=True)
