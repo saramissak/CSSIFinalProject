@@ -34,7 +34,7 @@ class MainHandler(webapp2.RequestHandler):
     # If the user is logged in...
     if user:
       signout_link_html = '<a href="%s">sign out</a>' % (
-          users.create_logout_url('/sign-in'))
+          users.create_logout_url('/index'))
       email_address = user.nickname()
       cssi_user = CssiUser.query().filter(CssiUser.email == email_address).get()
       # If the user is registered...
@@ -76,7 +76,7 @@ class OutfitHandler(webapp2.RequestHandler):
         user = users.get_current_user()
         if user:
             signout_link_html = '<a href="%s">sign out</a>' % (
-              users.create_logout_url('/sign-in'))
+              users.create_logout_url('/index'))
             email_address = user.nickname()
             cssi_user = CssiUser.query().filter(CssiUser.email == email_address).get()
 
