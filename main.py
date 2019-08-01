@@ -76,16 +76,26 @@ class MainHandler(webapp2.RequestHandler):
 
 class OutfitHandler(webapp2.RequestHandler):
     def get(self):
-        make_template = jinja_current_dir.get_template('templates/make-fits.html') #html page to be used
-        self.response.write(make_template.render())
+        user = users.get_current_user()
+        # If the user is logged in...
+        if user:
+          signout_link_html = '<a href="%s">sign out</a>' % (
+              users.create_logout_url('/sign-in'))
+          email_address = user.nickname()
+          cssi_user = CssiUser.query().filter(CssiUser.email == email_address).get()
+          make_template = jinja_current_dir.get_template('templates/make-fits.html') #html page to be used
+          self.response.write(make_template.render())
+        else:
+            # If the user isn't logged in...
+            login_url = users.create_login_url('/welcome')
+            login_html_element = '<a href="%s">Sign in</a>' % login_url
+            # Prompt the user to sign in.
+            self.response.write('Please log in.<br>' + login_html_element)
 
 class shirt(webapp2.RequestHandler):
     def get(self):
         shirt_template = jinja_current_dir.get_template('templates/shirts.html') #html page to be used
-
         shirts_list = get_shirts()
-
-
         jinja_dict = {
             'shirts': shirts_list
         }
