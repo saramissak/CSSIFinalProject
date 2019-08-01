@@ -42,5 +42,11 @@
         <img src="{{element}}" alt="idk" width="30%">
 
     {% endfor %}
+
+      {% for element in jackets %}
+      <img id="{{element.number}}" class="notActive{{element.number}}" style = "width: 20%" src="{{element.img_url}}" alt="none">
+
+        <br>
+      {% endfor %}
   </body>
 </html>
