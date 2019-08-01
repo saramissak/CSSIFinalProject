@@ -9,6 +9,7 @@ import os
 from CSSIUser import CssiUser
 from ClothesModel import Clothes
 from google.appengine.api import urlfetch
+from webapp2_extras import sessions
 import json
 
 the_jinja_env = jinja2.Environment(
@@ -56,6 +57,9 @@ def get_jacket():
     for each in clothing_fetch:
         jacket_list.append(each)
     return jacket_list
+
+# def get_outfits():
+
 
 # class FitsPage(webapp2.RequestHandler):
 #     def get(self):
