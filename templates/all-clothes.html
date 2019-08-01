@@ -3,6 +3,8 @@
   <head>
     <title>Make a fit</title>
     <link rel="stylesheet" href="../stylesheets/style.css">
+    <link rel="stylesheet" href="../stylesheets/toggle.css">
+
     <style media="screen">
       .active {
         border: solid yellow thick;
@@ -39,7 +41,19 @@
      </ul>
     </nav>
   </header>
-      <h1>All Clothes</h1>
+  <br>
+  <br>
+<br>
+<br>
+<br>
+<center>
+<form class="toggle" action="/welcome" method="get">
+  <input type="submit" name="Made-Outfits" value="Made Outfit">
+</form>
+</center>
+<br>
+<br>
+
          {% for element in all_clothes %}
            <div class="imagebox">
              <img src="{{element.img_url}}" alt="idk">
@@ -70,5 +84,6 @@
                  }
             </script>
          {% endfor %}
+
   </body>
 </html>
