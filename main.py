@@ -3,6 +3,7 @@ import jinja2
 import os
 import json
 
+from ClothesModel import ourPics
 from CSSIUser import CssiUser
 from ClothesModel import outfit
 from makefits import get_shirts

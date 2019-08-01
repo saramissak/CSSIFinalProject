@@ -22,3 +22,6 @@ class outfit(ndb.Model):
         result = {}
         result["img_url"] = self.img_url
         return result
+
+class ourPics(ndb.Model):
+    img = ndb.StringProperty(required = False)
