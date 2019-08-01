@@ -72,7 +72,6 @@
 
              for(var i = 0; i< list.length; i++){
                list[i].className = 'notActive{{element.number}}'
-               console.log('not')
              }
 
              event.target.className = 'active'
@@ -82,8 +81,8 @@
 
       </script>
     {% endfor %}
-    <form class="submit" action="/make_outfits" method="get">
-      <input type="submit" name='{{selected}}' value="upload">
+    <form class="submit" action="/shirt" method="post">
+      <input type="submit" name='var_string' value="">
     </form>
   </body>
 </html>
