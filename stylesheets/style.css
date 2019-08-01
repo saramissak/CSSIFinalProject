@@ -93,3 +93,33 @@ h1{
 .is-active{
   background-color: yellow;
 }
+.imagebox {
+display: inline-block;
+border-radius: 50%;
+border: 1px solid #ddd;
+border-radius: 4px;
+padding: 5px;
+display: inline-block;
+}
+.imagebox img{
+  width:200px;
+  height:200px;
+}
+.text{
+   text-align: center;
+}
+.image {
+display: inline-block;
+border-radius: 50%;
+border: 1px solid #ddd;
+border-radius: 4px;
+padding: 5px;
+display: inline-block;
+}
+.image img{
+  width:200px;
+  height:200px;
+}
+.textwords{
+   text-align: center;
+}

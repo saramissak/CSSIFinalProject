@@ -77,7 +77,20 @@ class MainHandler(webapp2.RequestHandler):
 class OutfitHandler(webapp2.RequestHandler):
     def get(self):
         make_template = jinja_current_dir.get_template('templates/make-fits.html') #html page to be used
-        self.response.write(make_template.render())
+        list_of_results = Clothes.query().filter(Clothes.personal_organization == search).fetch()
+        list_len = len(list_of_results)
+        if list_len > 0:
+            list_of_results[0].personal_organization
+        for match in list_of_results:
+            if match.key not in list_of_search:
+                list_of_search.append(match)
+
+        dict = {
+            'img': list_of_search
+        }
+        print(list_of_search)
+        self.response.write(make_template.render(dict))
+
 
 class shirt(webapp2.RequestHandler):
     def get(self):
