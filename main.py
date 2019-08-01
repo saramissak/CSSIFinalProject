@@ -34,7 +34,7 @@ class MainHandler(webapp2.RequestHandler):
     # If the user is logged in...
     if user:
       signout_link_html = '<a href="%s">sign out</a>' % (
-          users.create_logout_url('/sign-in'))
+          users.create_logout_url('/index'))
       email_address = user.nickname()
       cssi_user = CssiUser.query().filter(CssiUser.email == email_address).get()
       # If the user is registered...
@@ -48,21 +48,17 @@ class MainHandler(webapp2.RequestHandler):
               signout_link_html))
       # If the user isn't registered...
       else:
-        # Offer a registration form for a first-time visitor:
+        # Offer a registration form for a first-time visitor:                  #SIGN OUT PAGE
         self.response.write('''
-            Welcome to our site, %s!  Please sign up! <br>
-            <form method="post" action="/welcome">
-            <input type="text" name="first_name">
-            <input type="text" name="last_name">
-            <input type="submit">
-            </form><br> %s <br>
-            ''' % (email_address, signout_link_html))
+            <body style="background-color: lightskyblue">
+            <p style="color:white">Would you like to sign out? </p> <br> Click: %s <br>
+            ''' % (signout_link_html))
     else:
       # If the user isn't logged in...
       login_url = users.create_login_url('/welcome')
       login_html_element = '<a href="%s">Sign in</a>' % login_url
       # Prompt the user to sign in.
-      self.response.write('Please log in.<br>' + login_html_element)
+      self.response.write('Please sign in.<br>' + login_html_element)          #SIgn in HTML
 
   def post(self):
     # Code to handle a first-time registration from the form:
@@ -80,7 +76,7 @@ class OutfitHandler(webapp2.RequestHandler):
         user = users.get_current_user()
         if user:
             signout_link_html = '<a href="%s">sign out</a>' % (
-              users.create_logout_url('/sign-in'))
+              users.create_logout_url('/index'))
             email_address = user.nickname()
             cssi_user = CssiUser.query().filter(CssiUser.email == email_address).get()
 
