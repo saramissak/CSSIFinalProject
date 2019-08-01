@@ -22,11 +22,24 @@ from makefits import select_clothing_piece
 
 from google.appengine.api import users
 from google.appengine.ext import ndb
+from google.appengine.api import images
+
 
 jinja_current_dir = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
     extensions=['jinja2.ext.autoescape'],
     autoescape=True)
+
+class Image(webapp2.RequestHandler):
+    def get(self):
+        user = users.get_current_user()
+        if user:
+            email_address = user.nickname()
+            loggedin = CssiUser.query().filter(CssiUser.email == email_address).get()
+            self.response.headers['Content-Type'] = 'image/png'
+            self.response.out.write(loggedin.profile_Pic)
+        else:
+            self.response.out.write('No Image')
 
 
 class MainHandler(webapp2.RequestHandler):
@@ -35,7 +48,7 @@ class MainHandler(webapp2.RequestHandler):
     # If the user is logged in...
     if user:
       signout_link_html = '<a href="%s">sign out</a>' % (
-          users.create_logout_url('/index'))
+          users.create_logout_url('/'))
       email_address = user.nickname()
       cssi_user = CssiUser.query().filter(CssiUser.email == email_address).get()
       # If the user is registered...
@@ -72,12 +85,13 @@ class MainHandler(webapp2.RequestHandler):
     self.response.write('Thanks for signing up, %s! <br><a href="/">Home</a>' %
         cssi_user.first_name)
 
+
 class OutfitHandler(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         if user:
             signout_link_html = '<a href="%s">sign out</a>' % (
-              users.create_logout_url('/index'))
+              users.create_logout_url('/'))
             email_address = user.nickname()
             cssi_user = CssiUser.query().filter(CssiUser.email == email_address).get()
 
@@ -194,6 +208,7 @@ app = webapp2.WSGIApplication([
   ('/pant', pant),
   ('/jackets', jackets),
   ('/shoes', shoes),
-  ('/index', indexHandler),
+  ('/', indexHandler),
+  ('/image', Image)
   # ('made_outfits', MadeOutfits)
 ], debug=True)
