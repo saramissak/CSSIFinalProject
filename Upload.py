@@ -34,7 +34,6 @@ class Upload(webapp2.RequestHandler):
         #chane the page
         self.redirect('/all_clothes')
 
-
     def get(self):
 
         user = users.get_current_user()

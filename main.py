@@ -33,7 +33,7 @@ class MainHandler(webapp2.RequestHandler):
     # If the user is logged in...
     if user:
       signout_link_html = '<a href="%s">sign out</a>' % (
-          users.create_logout_url('/'))
+          users.create_logout_url('/sign-in'))
       email_address = user.nickname()
       cssi_user = CssiUser.query().filter(CssiUser.email == email_address).get()
       # If the user is registered...
@@ -76,29 +76,36 @@ class MainHandler(webapp2.RequestHandler):
 
 class OutfitHandler(webapp2.RequestHandler):
     def get(self):
-        make_template = jinja_current_dir.get_template('templates/make-fits.html') #html page to be used
-        list_of_results = Clothes.query().filter(Clothes.personal_organization == search).fetch()
-        list_len = len(list_of_results)
-        if list_len > 0:
-            list_of_results[0].personal_organization
-        for match in list_of_results:
-            if match.key not in list_of_search:
-                list_of_search.append(match)
+        if user:
+            signout_link_html = '<a href="%s">sign out</a>' % (
+              users.create_logout_url('/sign-in'))
+            email_address = user.nickname()
+            cssi_user = CssiUser.query().filter(CssiUser.email == email_address).get()
+            make_template = jinja_current_dir.get_template('templates/make-fits.html') #html page to be used
+            list_of_results = Clothes.query().filter(Clothes.personal_organization == search).fetch()
+            list_len = len(list_of_results)
+            if list_len > 0:
+                list_of_results[0].personal_organization
+            for match in list_of_results:
+                if match.key not in list_of_search:
+                    list_of_search.append(match)
 
-        dict = {
-            'img': list_of_search
-        }
-        print(list_of_search)
-        self.response.write(make_template.render(dict))
+            dict = {
+                'img': list_of_search
+            }
+            print(list_of_search)
+            self.response.write(make_template.render(dict))
+        else:
+            # If the user isn't logged in...
+            login_url = users.create_login_url('/welcome')
+            login_html_element = '<a href="%s">Sign in</a>' % login_url
+            # Prompt the user to sign in.
 
 
 class shirt(webapp2.RequestHandler):
     def get(self):
         shirt_template = jinja_current_dir.get_template('templates/shirts.html') #html page to be used
-
         shirts_list = get_shirts()
-
-
         jinja_dict = {
             'shirts': shirts_list
         }
@@ -113,7 +120,6 @@ class pant(webapp2.RequestHandler):
 
         pant_list = get_pants()
 
-
         jinja_dict = {
             'pants': pant_list
         }
@@ -126,9 +132,8 @@ class jackets(webapp2.RequestHandler):
 
         jacket_list = get_jacket()
 
-
         jinja_dict = {
-            'jacket': jacket_list
+            'jackets': jacket_list
         }
         print(jinja_dict)
         self.response.write(jacket_template.render(jinja_dict))
@@ -139,9 +144,8 @@ class shoes(webapp2.RequestHandler):
 
         shoes_list = get_shoes()
 
-
         jinja_dict = {
-            'shoes': shoes_list
+            'shoes': shoes_list,
         }
         print(jinja_dict)
         self.response.write(shoes_template.render(jinja_dict))

@@ -31,8 +31,6 @@ def get_shirts():
     shirt_list = []
     for each in clothing_fetch:
         shirt_list.append(each.img_url)
-    print(shirt_list)
-    print(clothing_fetch)
     return shirt_list
 
 def get_pants():
@@ -41,18 +39,14 @@ def get_pants():
     pant_list = []
     for each in clothing_fetch:
         pant_list.append(each.img_url)
-    print(pant_list)
-    print(clothing_fetch)
     return pant_list
 
 def get_shoes():
     clothing_query = Clothes.query()
-    clothing_fetch = clothing_query.filter(Clothes.categories == "shoes"or"sneakers").fetch()
+    clothing_fetch = clothing_query.filter(Clothes.categories == "shoes").fetch()
     shoes_list = []
     for each in clothing_fetch:
         shoes_list.append(each.img_url)
-    print(shoes_list)
-    print(clothing_fetch)
     return shoes_list
 
 def get_jacket():
@@ -61,8 +55,6 @@ def get_jacket():
     jacket_list = []
     for each in clothing_fetch:
         jacket_list.append(each.img_url)
-    print(jacket_list)
-    print(clothing_fetch)
     return jacket_list
 
 # class FitsPage(webapp2.RequestHandler):
