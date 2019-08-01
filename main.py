@@ -4,6 +4,7 @@ import os
 import json
 
 from CSSIUser import CssiUser
+from ClothesModel import outfit
 from makefits import get_shirts
 from makefits import get_pants
 from makefits import get_jacket
@@ -122,9 +123,21 @@ class shirt(webapp2.RequestHandler):
     def post(self):
         selected = self.request.get("{{selected}}")
 
+    def post(self):
+        selected = self.request.get("var_string")
+        print("Selected outfit " + selected)
+        user_outfits = outfit(top = selected.get())
+        user_outfits.put()
+        self.redirect('/make_outfits')
 
         user_outfits = outfits(top= selected)
         user_outfits.put()
+
+class pant(webapp2.RequestHandler):
+    def get(self):
+        pant_template = jinja_current_dir.get_template('templates/pants.html') #html page to be used
+
+        pant_list = get_pants()
 
 class pant(webapp2.RequestHandler):
     def get(self):
