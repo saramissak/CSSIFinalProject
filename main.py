@@ -182,6 +182,7 @@ class indexHandler(webapp2.RequestHandler):
         index_template = jinja_current_dir.get_template('templates/index.html') #html page to be used
         self.response.write(index_template.render())
 
+# class MadeOutfits(web)
 
 app = webapp2.WSGIApplication([
   ('/sign-in', MainHandler),
@@ -197,5 +198,5 @@ app = webapp2.WSGIApplication([
   ('/jackets', jackets),
   ('/shoes', shoes),
   ('/index', indexHandler),
-  ('made_outfits', MadeOutfits)
+  # ('made_outfits', MadeOutfits)
 ], debug=True)
