@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
+    <style media="screen">
+      #switch {
+        padding: 50px;
+      }
+    </style>
     <link rel="stylesheet" href="../stylesheets/style.css">
 
     <meta charset="utf-8">
@@ -34,7 +39,14 @@
     <br>
     <br>
     <br>
+    <br>
 
-    <h1 style="text-aling:center"> Please Login!</h1>
+    <center>
+    <h1 style="text-aling:center"> Welcome to Organize it! </h1>
+    <h3>Go to your homepage or log in!</h3>
+    <form class="goto" action="/welcome" method="get">
+        <input id='switch' type="submit" name="goto" value="Homepage and/or Sign-in">
+    </form>
+  </center>
   </body>
 </html>
