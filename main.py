@@ -126,11 +126,11 @@ class shirt(webapp2.RequestHandler):
     def post(self):
         selected = self.request.get("var_string")
         print("Selected outfit " + selected)
-        user_outfits = outfit(top = selected.get())
+        user_outfits = outfit(top = selected)
         user_outfits.put()
-        self.redirect('/make_outfits')
+        self.redirect('/made_outfits')
 
-        user_outfits = outfits(top= selected)
+        user_outfits = outfit(top= selected)
         user_outfits.put()
 
 class pant(webapp2.RequestHandler):
@@ -196,5 +196,6 @@ app = webapp2.WSGIApplication([
   ('/pant', pant),
   ('/jackets', jackets),
   ('/shoes', shoes),
-  ('/index', indexHandler)
+  ('/index', indexHandler),
+  ('made_outfits', MadeOutfits)
 ], debug=True)
