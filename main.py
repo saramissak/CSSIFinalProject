@@ -15,6 +15,7 @@ from aboutUs import about
 from aboutUs import welcome
 from ClothesModel import Clothes
 from Upload import Upload
+
 from get_all_clothes import AllClothes
 from makefits import select_clothing_piece
 # from makefits import ShirtsJSON
@@ -22,25 +23,13 @@ from makefits import select_clothing_piece
 
 from google.appengine.api import users
 from google.appengine.ext import ndb
-from google.appengine.api import images
+
 
 
 jinja_current_dir = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
     extensions=['jinja2.ext.autoescape'],
     autoescape=True)
-
-class Image(webapp2.RequestHandler):
-    def get(self):
-        user = users.get_current_user()
-        if user:
-            email_address = user.nickname()
-            loggedin = CssiUser.query().filter(CssiUser.email == email_address).get()
-            self.response.headers['Content-Type'] = 'image/png'
-            self.response.out.write(loggedin.profile_Pic)
-        else:
-            self.response.out.write('No Image')
-
 
 class MainHandler(webapp2.RequestHandler):
   def get(self):
@@ -70,10 +59,9 @@ class MainHandler(webapp2.RequestHandler):
     else:
       # If the user isn't logged in...
       login_url = users.create_login_url('/welcome')
-      # login_html_element = '<a href="%s">Sign in</a>' % login_url
-      # # Prompt the user to sign in.
-      # self.response.write('Please sign in.<br>' + login_html_element)          #SIgn in HTML
-      # self.response.write(login_url)
+      login_html_element = '<a href="%s">Sign in</a>' % login_url
+      # Prompt the user to sign in.
+      self.response.write('Please sign in.<br>' + login_html_element)          #SIgn in HTML
 
 
   def post(self):
@@ -95,14 +83,14 @@ class OutfitHandler(webapp2.RequestHandler):
             signout_link_html = '<a href="%s">sign out</a>' % (
               users.create_logout_url('/'))
             email_address = user.nickname()
-            cssi_user = CssiUser.query().filter(CssiUser.email == email_address).get()
+            cssi_user = CssiUser.query()
 
             search = self.request.get("search")
-            clothes_query = Clothes.query()
+            clothes_query = Clothes.query().filter(Clothes.user == user.email())
             list_of_search = []
 
             make_template = jinja_current_dir.get_template('templates/make-fits.html') #html page to be used
-            list_of_results = Clothes.query().filter(Clothes.personal_organization == search).fetch()
+            list_of_results = clothes_query.filter(Clothes.personal_organization == search).fetch()
             list_len = len(list_of_results)
             if list_len > 0:
                 list_of_results[0].personal_organization
@@ -117,7 +105,7 @@ class OutfitHandler(webapp2.RequestHandler):
             self.response.write(make_template.render(dict))
         else:
             # If the user isn't logged in...
-            login_url = users.create_login_url('/welcome')
+            login_url = users.create_login_url('/')
             login_html_element = '<a href="%s">Sign in</a>' % login_url
             # Prompt the user to sign in.
 
@@ -211,6 +199,6 @@ app = webapp2.WSGIApplication([
   ('/jackets', jackets),
   ('/shoes', shoes),
   ('/', indexHandler),
-  ('/image', Image)
+
   # ('made_outfits', MadeOutfits)
 ], debug=True)

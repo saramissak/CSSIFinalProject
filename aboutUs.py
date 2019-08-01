@@ -4,7 +4,7 @@ import os
 
 from ClothesModel import Clothes
 from CSSIUser import CssiUser
-from google.appengine.api import users, images
+from google.appengine.api import users
 
 
 
@@ -18,9 +18,6 @@ class about(webapp2.RequestHandler):
         aboutus_template = the_jinja_env.get_template('templates/aboutus.html') #html page to be used
         self.response.write(aboutus_template.render())
 
-    def post(self):
-        profile_Pic = self.request.get("pic")
-        # pic_resize = images.resize(profile_Pic, 256, 256)
 
 class welcome(webapp2.RequestHandler):
     def get(self):
@@ -34,7 +31,7 @@ class welcome(webapp2.RequestHandler):
             self.response.write(welcome_template.render())
         else:
            # If the user isn't logged in...
-           login_url = users.create_login_url('/welcome')
+           login_url = users.create_login_url('/')
            login_html_element = '<a href="%s">Sign in</a>' % login_url
            # Prompt the user to sign in.
            self.response.write('Please log in.<br>' + login_html_element)
