@@ -30,8 +30,6 @@ class welcome(webapp2.RequestHandler):
             welcome_template = the_jinja_env.get_template('templates/welcome.html') #html page to be used
             self.response.write(welcome_template.render())
         else:
-           # If the user isn't logged in...
-           login_url = users.create_login_url('/')
-           login_html_element = '<a href="%s">Sign in</a>' % login_url
-           # Prompt the user to sign in.
-           self.response.write('Please log in.<br>' + login_html_element)
+            # If the user isn't logged in...
+            login_url = users.create_login_url('/welcome')
+            self.redirect(login_url)          #SIgn in HTML
