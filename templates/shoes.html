@@ -39,14 +39,13 @@
     <br>
     {% for element in shoes %}
       <div style="background-color:white"; class="image">
-        <img src="{{element.img_url}}" alt="idk">
+        <img src="{{element.img_url}}" alt="No Picture Avaliable ">
         <div class="textwords">
           <p>Name: {{element.article_name}}</p>
           <p>Description: {{element.article_description}}</p>
           <p>Categories: {{element.categories}}</p>
           <p>Personal Organization: {{element.personal_organization}}</p>
           <p><a href='/cart?add={{element.key.urlsafe()}}'>Add to Outfit</a><p>
-          <p><a href='/cart?clear_outfit=true'>Clear Cart</a><p>
         </div>
       </div>
     {% endfor %}
