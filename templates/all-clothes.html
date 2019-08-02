@@ -55,8 +55,13 @@
 <br>
 
          {% for element in all_clothes %}
+<<<<<<< HEAD
            <div class="imagebox">
+             <img src="{{element.img_url}}" alt="idk" id="{{element.number}}" class='notActive{{element.number}}'>
+=======
+           <div style="background-color: white"class="imagebox">
              <img src="{{element.img_url}}" alt="idk">
+>>>>>>> da9587fd81f89751b4ccd3ade3ada698511d2d9d
              <div class="text">
                <p>Name: {{element.article_name}}</p>
                <p>Description: {{element.article_description}}</p>
@@ -64,6 +69,7 @@
                <p>Personal Organization: {{element.personal_organization}}</p>
              </div>
            </div>
+
             <script type="text/javascript">
                registerHandlers()
                  function registerHandlers() {
@@ -71,19 +77,21 @@
                    console.log('TEST')
                  }
                  function myFunction(event) {
-                   // {{counter}} += 1
                    console.log(event.target)
                    var list = document.getElementsByClassName("active")
-
-                   for(var i = 0; i< list.length; i++){
-                     list[i].className = 'notActive{{element.number}}'
-                   }
+                     for(var i = 0; i< list.length; i++)
+                     {
+                       list[i].className = 'notActive{{element.number}}'
+                     }
                    event.target.className = 'active'
-                   {{selected}} = {{element.number}};
-                   console.log({{selected}})
+                   whats_slected = {{element.number}};
+                   console.log(whats_slected)
                  }
             </script>
          {% endfor %}
-
+         <form class="toggle" action="/all_clothes" method="get">
+           <input type="hidden" name="to_delete" value="">
+           <input type="submit" name="Made-Outfits" value="Delete Selected Item">
+         </form>
   </body>
 </html>
