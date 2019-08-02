@@ -86,7 +86,7 @@ class MainHandler(webapp2.RequestHandler):
             <br>
             <br>
             <br>
-            <h1 style="text-align: center;">Would you like to sign out? </h1>  <center> <a href=" %s "> <button type="button">Click Me!</button></a> <center> <br>  <br>
+            <h1 style="text-align: center;">Would you like to sign out? </h1>  <center> <a href=" %s "> <button type="button" style="padding:25px; border-radius: 25px;">Sign out!</button></a> <center> <br>  <br>
             ''' % (users.create_logout_url('/')))
     else:
         # If the user isn't logged in...
