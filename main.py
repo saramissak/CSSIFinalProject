@@ -230,7 +230,6 @@ class BaseHandler(webapp2.RequestHandler):
 
 class OutfitCart(BaseHandler):
     def get(self):
-        self.session['outfit']
         if not 'outfit' in self.session or self.request.get('clear_outfit') == 'true':
             self.session['outfit'] = []
 
