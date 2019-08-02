@@ -39,8 +39,6 @@ class AllClothes(webapp2.RequestHandler):
             cssi_user = CssiUser.query().filter(CssiUser.email == email_address).get()
 
         else:
-          # If the user isn't logged in...
-          login_url = users.create_login_url('/')
-          login_html_element = '<a href="%s">Sign in</a>' % login_url
-          # Prompt the user to sign in.
-          self.response.write('Please log in.<br>' + login_html_element)
+            # If the user isn't logged in...
+            login_url = users.create_login_url('/welcome')
+            self.redirect(login_url)          #SIgn in HTML
