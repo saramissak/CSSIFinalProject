@@ -18,6 +18,7 @@ class Outfit(ndb.Model):
     bottoms = ndb.KeyProperty(required = False)
     shoes = ndb.KeyProperty(required = False)
     outerwear = ndb.KeyProperty(required = False)
+    user = ndb.StringProperty(required = True)
 
     def to_dict(self):
         result = {}

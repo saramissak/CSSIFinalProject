@@ -2,7 +2,7 @@ import webapp2
 import jinja2
 import os
 import json
-
+import time
 from ClothesModel import ourPics
 from CSSIUser import CssiUser
 from ClothesModel import Outfit
@@ -255,22 +255,26 @@ class OutfitCart(BaseHandler):
         self.response.write(outfit_template.render(jinja_dict))
 
     def post(self):
-        self.session['outfit']
+        print(ndb.Key(urlsafe = self.session['outfit'][0]).get())
         outfit_keys = [ndb.Key(urlsafe = x) for x in self.session['outfit']]
-        result = Outfit()
+        result = Outfit(user = users.get_current_user().email())
         for key in outfit_keys:
             item = key.get()
-            if item.categories == 'top':
+            print(item.categories)
+            if item.categories == 'shirt':
                 result.top = key
-            if item.categories == 'outerwear':
+            if item.categories == 'jacket':
                 result.outerwear = key
-            if item.categories == 'bottoms':
+            if item.categories == 'pants':
                 result.bottoms = key
             if item.categories == 'shoes':
                 result.shoes = key
+        print("About to put outfit in datastore: ")
+        print(result.top)
         result.put()
+        time.sleep(0.1)
         self.session['outfit'] = []
-
+        self.redirect('/view-made-fits')
 
 config = {}
 config['webapp2_extras.sessions'] = {
