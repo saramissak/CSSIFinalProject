@@ -81,14 +81,14 @@ class ViewMadeFits(webapp2.RequestHandler):
             if user:
                 made_template = the_jinja_env.get_template('made-fits-view.html') #html page to be used
 
-                outfit_query = outfit.query().filter(outfit.user == user.email())
-                outfit_fetch = outfit_query.fetch()
+                Outfit_query = Outfit.query().filter(Outfit.user == user.email())
+                Outfit_fetch = Outfit_query.fetch()
                 selected= "var_string"
                 # count = "count"
                 on_off = "on"
                 the_variable_dict = {
                     "user": user,
-                    'all_clothes': outfit_fetch,
+                    'all_clothes': Outfit_fetch,
                     'selected': selected,
                     "on-off": on_off
                 }
@@ -108,21 +108,21 @@ class ViewMadeFits(webapp2.RequestHandler):
 
             if self.request.get("to_delete") != "":
                 to_delete = self.request.get("to_delete")
-                key_to_delete = outfit.query().filter(outfit.number == int(to_delete)).fetch()[0].key
+                key_to_delete = Outfit.query().filter(Outfit.number == int(to_delete)).fetch()[0].key
                 Delete = key_to_delete.delete()
                 time.sleep(.1)
                 self.redirect('/view-made-fits')
             else:
                 made_template = the_jinja_env.get_template('templates/made-fits-view.html') #html page to be used
 
-                outfit_query = outfit.query().filter(outfit.user == user.email())
-                outfit_fetch = outfit_query.fetch()
+                Outfit_query = Outfit.query().filter(Outfit.user == user.email())
+                Outfit_fetch = Outfit_query.fetch()
                 selected= "var_string"
                 # count = "count"
                 on_off = "on"
                 the_variable_dict = {
                     "user": user,
-                    'all_clothes': outfit_fetch,
+                    'all_clothes': Outfit_fetch,
                     'selected': selected,
                     "on-off": on_off
                 }
