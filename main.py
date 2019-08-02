@@ -134,9 +134,10 @@ class OutfitHandler(webapp2.RequestHandler):
             self.response.write(make_template.render(dict))
         else:
             # If the user isn't logged in...
-            login_url = users.create_login_url('/')
-            login_html_element = '<a href="%s">Sign in</a>' % login_url
+            login_url = users.create_login_url('/welcome')
             # Prompt the user to sign in.
+            self.redirect(login_url)  
+
 
 
 class shirt(webapp2.RequestHandler):

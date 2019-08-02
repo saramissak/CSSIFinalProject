@@ -53,12 +53,9 @@
 </center>
 <br>
 <br>
-
          {% for element in all_clothes %}
-           <div class="imagebox">
+         <div style="background-color: white"class="imagebox">
              <img src="{{element.img_url}}" alt="idk" id="{{element.number}}" class='notActive{{element.number}}'>
-           <div style="background-color: white"class="imagebox">
-             <img src="{{element.img_url}}" alt="idk">
              <div class="text">
                <p>Name: {{element.article_name}}</p>
                <p>Description: {{element.article_description}}</p>
@@ -87,12 +84,10 @@
                  }
             </script>
          {% endfor %}
-        {% if whats_selected %}
-        {% else %}
          <form class="toggle" action="/all_clothes" method="post">
            <input id="no" type="hidden" name="to_delete" value="">
            <input id = "delete_button" type="submit" name="Made-Outfits" value="Delete Selected Item">
          </form>
-         {% endif %}
+
   </body>
 </html>
