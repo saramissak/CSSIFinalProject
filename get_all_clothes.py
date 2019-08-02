@@ -44,8 +44,7 @@ class AllClothes(webapp2.RequestHandler):
             # If the user isn't logged in...
             login_url = users.create_login_url('/welcome')
             self.redirect(login_url)          #SIgn in HTML
-<<<<<<< HEAD
-=======
+
 
     def post(self):
         user = users.get_current_user()
@@ -72,4 +71,3 @@ class AllClothes(webapp2.RequestHandler):
                 "on-off": on_off
             }
             self.response.write(upload_template.render(the_variable_dict))
->>>>>>> 83daf7f61a4b0d2883d7972b6bb189f2ed2d7fe6
