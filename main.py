@@ -10,6 +10,7 @@ from makefits import get_shirts
 from makefits import get_pants
 from makefits import get_jacket
 from makefits import get_shoes
+# from makefits import get_outfits
 from Search import search
 from aboutUs import about
 from aboutUs import welcome
@@ -18,8 +19,10 @@ from Upload import Upload
 
 from get_all_clothes import AllClothes
 from makefits import select_clothing_piece
+
 # from makefits import ShirtsJSON
 
+from webapp2_extras import sessions
 
 from google.appengine.api import users
 from google.appengine.ext import ndb
@@ -53,6 +56,7 @@ class MainHandler(webapp2.RequestHandler):
       else:
         # Offer a registration form for a first-time visitor:                  #SIGN OUT PAGE
         self.response.write('''
+<<<<<<< HEAD
         <head>
               <link rel="stylesheet" href="../stylesheets/style.css">
         <title>Sign out</title>
@@ -83,7 +87,10 @@ class MainHandler(webapp2.RequestHandler):
             <br>
             <br>
             <br>
-            <p style="color:green">Would you like to sign out? </p> <br> %s <br>
+            <p style="color:white"; text-align: "center"; border: "3px solid green">Would you like to sign out? </p> <br> %s <br>
+=======
+            <body style="background-color: skyblue">
+>>>>>>> 9a8f13187d61861ddd64f5ca4b3b316cadbef62a
             ''' % (signout_link_html))
     else:
         # If the user isn't logged in...
@@ -158,15 +165,6 @@ class shirt(webapp2.RequestHandler):
         user_outfits.put()
         self.redirect('/made_outfits')
 
-        user_outfits = outfit(top= selected)
-        user_outfits.put()
-
-class pant(webapp2.RequestHandler):
-    def get(self):
-        pant_template = jinja_current_dir.get_template('templates/pants.html') #html page to be used
-
-        pant_list = get_pants()
-
 class pant(webapp2.RequestHandler):
     def get(self):
         pant_template = jinja_current_dir.get_template('templates/pants.html') #html page to be used
@@ -210,7 +208,60 @@ class indexHandler(webapp2.RequestHandler):
         index_template = jinja_current_dir.get_template('templates/index.html') #html page to be used
         self.response.write(index_template.render())
 
-# class MadeOutfits(web)
+# class MadeOutfits(webapp2.RequestHandler):
+#     def get(self):
+#         made_fits_template = jinja_current_dir.get_template('templates/made-fits.html')
+#         outfit_list = get_outfits()
+#
+#         outfit_dict = {
+#             'outfits': outfit_list
+#         }
+#         self.response.write(made_fits_template.render(outfit_dict))
+
+class BaseHandler(webapp2.RequestHandler):
+    def dispatch(self):
+        # Get a session store for this request.
+        self.session_store = sessions.get_store(request=self.request)
+
+        try:
+            # Dispatch the request.
+            webapp2.RequestHandler.dispatch(self)
+        finally:
+            # Save all sessions.
+            self.session_store.save_sessions(self.response)
+
+    @webapp2.cached_property
+    def session(self):
+        # Returns a session using the default cookie key.
+        return self.session_store.get_session()
+
+class OutfitCart(BaseHandler):
+    def get(self):
+        if not 'outfit' in self.session:
+            self.session['outfit'] = []
+        self.session['outfit'].append(self.request.get('add'))
+        clothing_urls = []
+        for item in self.session['outfit']:
+            item_key = ndb.Key(urlsafe = item)
+            print(item)
+            clothing_urls.append(item_key.get())
+
+        outfit_template = jinja_current_dir.get_template('templates/made-fits.html') #html page to be used
+
+        jinja_dict = {
+            'outfits': clothing_urls,
+            }
+
+        print(jinja_dict)
+        self.response.write(outfit_template.render(jinja_dict))
+
+
+
+
+config = {}
+config['webapp2_extras.sessions'] = {
+    'secret_key': 'my-super-secret-key',
+}
 
 app = webapp2.WSGIApplication([
   ('/sign-in', MainHandler),
@@ -226,6 +277,6 @@ app = webapp2.WSGIApplication([
   ('/jackets', jackets),
   ('/shoes', shoes),
   ('/', indexHandler),
-
-  # ('made_outfits', MadeOutfits)
-], debug=True)
+  # ('/made_outfits', MadeOutfits),
+  ('/cart', OutfitCart),
+], config=config, debug=True)

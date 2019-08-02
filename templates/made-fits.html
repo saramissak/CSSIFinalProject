@@ -9,7 +9,7 @@
       <title>Home</title>
       <link rel="stylesheet" href="../stylesheets/style.css">
     </head>
-  <body>
+  <body >
     <header class="topnav">
       <img src="https://cdn1.iconfinder.com/data/icons/office-web/128/office-94-512.png">
       <nav>
@@ -28,7 +28,28 @@
                  <i class="material-icons">search</i></label>
               </div>
           </form>
+<<<<<<< HEAD
           </ul>
         </nav>
         </header>
+=======
+        </header>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        {% for element in outfits %}
+        <div class="image">
+          <img src="{{element.img_url}}" alt="idk">
+          <div class="textwords">
+            <p>Name: {{element.article_name}}</p>
+            <p>Description: {{element.article_description}}</p>
+            <p>Categories: {{element.categories}}</p>
+            <p>Personal Organization: {{element.personal_organization}}</p>
+          </div>
+        </div>
+        {% endfor %}
+        </body>
+>>>>>>> 9a8f13187d61861ddd64f5ca4b3b316cadbef62a
 </html>
