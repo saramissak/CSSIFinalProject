@@ -22,7 +22,7 @@ header img {
 }
 
 header li {
-    margin: 32.5px;
+    margin: 30px;
 }
 
 header li a {
@@ -47,11 +47,21 @@ li a:hover:not(.active){
   color: white;
   height: 100%;
 }
+#sign_out_button:active{
+  background-color: powderblue;
+  color: white;
+  height: 100%;
+}
 
 #fit-button:hover:not(.active){
   background-color: powderblue;
   color: white;
   height:100%;
+}
+
+#sign_out_button:hover:not(.active){
+  background-color: powderblue;
+  color: white;
 }
 
 li a, #fit-button{
@@ -60,21 +70,48 @@ li a, #fit-button{
   padding-left: 30px;
   padding-right: 30px;
   border-radius: 10px;
-
 }
 
 #fit-button{
-  margin-top: 20px;
-  display: inline-block;
-  text-align: center;
-  padding-right: 5%;
-  padding-left: 5%;
-  font-size: 25px;
-  vertical-align: middle;
+  width: 19%;
+  border-radius: 25px;
+  background-color: #99ff99;
+  padding: 15px 28px;
+  font-size: 19px;
+  cursor: pointer;
+}
+
+#sign_out_button{
+  width: 19%;
+  border-radius: 25px;
+  background-color: #99ff99;
+  padding: 15px 28px;
+  font-size: 19px;
+  cursor: pointer;
 }
 
 h1{
   text-align: center
+}
+
+h4{
+  text-align: justify;
+  text-align: center;
+  font-size: 60px;
+  font-variant: small-caps;
+  font-family: 'Roboto', sans-serif;
+  letter-spacing: 10px;
+  text-shadow: 2px 4px honeydew;
+
+}
+h5,h6{
+  text-align: justify;
+  text-align: center;
+  font-size: 25px;
+  color: darkblue;
+  text-shadow: 2px 2px honeydew;
+  font-family: 'Roboto', sans-serif;
+
 }
 
 .categoryItem img {
@@ -129,4 +166,9 @@ display: inline-block;
 }
 .textwords{
    text-align: center;
+}
+
+.topnav{
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;
 }

@@ -61,32 +61,32 @@ class MainHandler(webapp2.RequestHandler):
         <title>Sign out</title>
         </head>
         <header class="topnav">
-      <img src="https://cdn1.iconfinder.com/data/icons/office-web/128/office-94-512.png">
-      <nav>
-        <ul>
-          <li><a href="/welcome">Home</a></li>
-          <li><a href="/all_clothes">Wardrobe</a></li>
-          <li><a href="/upload">Upload</a></li>
-          <li><a href="/make_outfits">Make Outfit</a></li>
-          <li><a href="/about_us">About</a></li>
-          <li><a href="/sign-in">Sign Out</a></li>
-          <li>
-          <form class="changepage" action="/search" method="get">
-             <div class="input-field">
-                 <input id="search" name="search" type="search" required>
-                 <label class="label-icon" for="search">
-                 <i class="material-icons">search</i></label>
-              </div>
-          </form>
-          </ul>
-        </nav>
-        </header>
+          <img src="https://cdn1.iconfinder.com/data/icons/office-web/128/office-94-512.png">
+          <nav>
+            <ul>
+              <li><a href="/welcome">Home</a></li>
+              <li><a href="/all_clothes">Wardrobe</a></li>
+              <li><a href="/upload">Upload</a></li>
+              <li><a href="/make_outfits">Make Outfit</a></li>
+              <li><a href="/about_us">About</a></li>
+              <li><a href="/sign-in">Sign Out</a></li>
+              <li>
+              <form class="changepage" action="/search" method="get">
+                 <div class="input-field">
+                     <input id="search" name="search" type="search" required>
+                     <label class="label-icon" for="search">
+                     <i class="material-icons">search</i></label>
+                  </div>
+              </form>
+              </ul>
+            </nav>
+            </header>
             <body style="background-color: powderblue">
             <br>
             <br>
             <br>
             <br>
-            <h1 style="text-align: center;">Would you like to sign out? </h1>  <center> <a href=" %s "> <button type="button" style="padding:25px; border-radius: 25px;">Sign out!</button></a> <center> <br>  <br>
+            <h1 style="text-align: center;">Would you like to sign out? </h1>  <center> <a href=" %s "> <button id= "sign_out_button" type="button">Sign out!</button></a> <center> <br>  <br>
             ''' % (users.create_logout_url('/')))
     else:
         # If the user isn't logged in...
@@ -134,9 +134,10 @@ class OutfitHandler(webapp2.RequestHandler):
             self.response.write(make_template.render(dict))
         else:
             # If the user isn't logged in...
-            login_url = users.create_login_url('/')
-            login_html_element = '<a href="%s">Sign in</a>' % login_url
+            login_url = users.create_login_url('/welcome')
             # Prompt the user to sign in.
+            self.redirect(login_url)  
+
 
 
 class shirt(webapp2.RequestHandler):
@@ -251,6 +252,10 @@ class OutfitCart(BaseHandler):
             }
         print(jinja_dict)
         self.response.write(outfit_template.render(jinja_dict))
+
+    def post(self):
+        self.session['outfit']
+        Clothes.query().filter(Clothes.categories)
 
 
 
