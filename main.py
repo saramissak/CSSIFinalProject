@@ -56,7 +56,6 @@ class MainHandler(webapp2.RequestHandler):
       else:
         # Offer a registration form for a first-time visitor:                  #SIGN OUT PAGE
         self.response.write('''
-<<<<<<< HEAD
         <head>
               <link rel="stylesheet" href="../stylesheets/style.css">
         <title>Sign out</title>
@@ -87,14 +86,11 @@ class MainHandler(webapp2.RequestHandler):
             <br>
             <br>
             <br>
-            <p style="color:white"; text-align: "center"; border: "3px solid green">Would you like to sign out? </p> <br> %s <br>
-=======
-            <body style="background-color: skyblue">
->>>>>>> 9a8f13187d61861ddd64f5ca4b3b316cadbef62a
-            ''' % (signout_link_html))
+            <h1 style="text-align: center;">Would you like to sign out? </h1>  <center> <a href=" %s "> <button type="button">Click Me!</button></a> <center> <br>  <br>
+            ''' % (users.create_logout_url('/')))
     else:
         # If the user isn't logged in...
-        login_url = users.create_login_url('/welcome')
+        login_url = users.create_login_url('/')
         self.redirect(login_url)          #SIgn in HTML
 
 
