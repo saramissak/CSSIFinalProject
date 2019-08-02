@@ -85,9 +85,12 @@
                  }
             </script>
          {% endfor %}
+        {% if whats_selected %}
+        {% else %}
          <form class="toggle" action="/all_clothes" method="post">
            <input id="no" type="hidden" name="to_delete" value="">
            <input type="submit" name="Made-Outfits" value="Delete Selected Item">
          </form>
+         {% endif %}
   </body>
 </html>
