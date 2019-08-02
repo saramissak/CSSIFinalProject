@@ -14,7 +14,7 @@
     <meta charset="utf-8">
     <title></title>
   </head>
-  <body>
+  <body style="background-color:powderblue;">
     <head>
       <title>Home</title>
       <link rel="stylesheet" href="../stylesheets/style.css">
@@ -49,7 +49,7 @@
     <br>
     {% for element in shirts %}
       <div>
-        <div class="image">
+        <div style="background-color:white"; class="image">
           <img src="{{element.img_url}}" alt="idk" id = {{element.number}}>
           <div class="textwords">
             <p>Name: {{element.article_name}}</p>
