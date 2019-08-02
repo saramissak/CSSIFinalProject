@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" dir="ltr">
   <head>
-    <title>All Clothes</title>
+    <meta charset="utf-8">
+    title>Make a fit</title>
     <link rel="stylesheet" href="../stylesheets/style.css">
     <link rel="stylesheet" href="../stylesheets/toggle.css">
 
@@ -53,6 +54,7 @@
 </center>
 <br>
 <br>
+<!-- HAVE TO EDIT BASED OFF OF OUTFIT HANDLER  -->
          {% for element in all_clothes %}
          <div style="background-color: white"class="imagebox">
              <img src="{{element.img_url}}" alt="idk" id="{{element.number}}" class='notActive{{element.number}}'>
@@ -90,6 +92,5 @@
            <input id="no" type="hidden" name="to_delete" value="">
            <input id = "delete_button" type="submit" name="Made-Outfits" value="Delete Selected Item">
          </form>
-
   </body>
 </html>

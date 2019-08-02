@@ -17,7 +17,7 @@ from aboutUs import welcome
 from ClothesModel import Clothes
 from Upload import Upload
 
-from get_all_clothes import AllClothes
+from get_all_clothes import AllClothes, ViewMadeFits
 from makefits import select_clothing_piece
 
 # from makefits import ShirtsJSON
@@ -259,7 +259,6 @@ class OutfitCart(BaseHandler):
 
 
 
-
 config = {}
 config['webapp2_extras.sessions'] = {
     'secret_key': 'my-super-secret-key',
@@ -279,6 +278,7 @@ app = webapp2.WSGIApplication([
   ('/jackets', jackets),
   ('/shoes', shoes),
   ('/', indexHandler),
+  ('/view-made-fits', ViewMadeFits),
   # ('/made_outfits', MadeOutfits),
   ('/cart', OutfitCart),
 ], config=config, debug=True)

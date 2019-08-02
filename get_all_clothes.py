@@ -5,7 +5,7 @@ import time
 
 from google.appengine.api import users
 from google.appengine.ext import ndb
-from ClothesModel import Clothes
+from ClothesModel import Clothes, outfit
 from CSSIUser import CssiUser
 
 
@@ -69,3 +69,61 @@ class AllClothes(webapp2.RequestHandler):
                 "on-off": on_off
             }
             self.response.write(upload_template.render(the_variable_dict))
+
+class ViewMadeFits(webapp2.RequestHandler):
+    def get(self):
+        made_template = the_jinja_env.get_template('templates/made-fits-view.html') #html page to be used
+        self.response.write(made_template.render())
+
+        def get(self):
+            user = users.get_current_user()
+            # If the user is logged in...
+            if user:
+                made_template = the_jinja_env.get_template('made-fits-view.html') #html page to be used
+
+                outfit_query = outfit.query().filter(outfit.user == user.email())
+                outfit_fetch = outfit_query.fetch()
+                selected= "var_string"
+                # count = "count"
+                on_off = "on"
+                the_variable_dict = {
+                    "user": user,
+                    'all_clothes': outfit_fetch,
+                    'selected': selected,
+                    "on-off": on_off
+                }
+                self.response.write(made_template.render(the_variable_dict))
+                # Clothes[selected].key.delete()
+                signout_link_html = '<a href="%s">sign out</a>' % (
+                    users.create_logout_url('/welcome'))
+                email_address = user.nickname()
+                cssi_user = CssiUser.query().filter(CssiUser.email == email_address).get()
+
+            else:
+                # If the user isn't logged in...
+                login_url = users.create_login_url('/welcome')
+                self.redirect(login_url)          #SIgn in HTML
+        def post(self):
+            user = users.get_current_user()
+
+            if self.request.get("to_delete") != "":
+                to_delete = self.request.get("to_delete")
+                key_to_delete = outfit.query().filter(outfit.number == int(to_delete)).fetch()[0].key
+                Delete = key_to_delete.delete()
+                time.sleep(.1)
+                self.redirect('/view-made-fits')
+            else:
+                made_template = the_jinja_env.get_template('templates/made-fits-view.html') #html page to be used
+
+                outfit_query = outfit.query().filter(outfit.user == user.email())
+                outfit_fetch = outfit_query.fetch()
+                selected= "var_string"
+                # count = "count"
+                on_off = "on"
+                the_variable_dict = {
+                    "user": user,
+                    'all_clothes': outfit_fetch,
+                    'selected': selected,
+                    "on-off": on_off
+                }
+                self.response.write(made_template.render(the_variable_dict))
