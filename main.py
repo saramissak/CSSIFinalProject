@@ -5,7 +5,7 @@ import json
 
 from ClothesModel import ourPics
 from CSSIUser import CssiUser
-from ClothesModel import outfit
+from ClothesModel import Outfit
 from makefits import get_shirts
 from makefits import get_pants
 from makefits import get_jacket
@@ -86,7 +86,7 @@ class MainHandler(webapp2.RequestHandler):
             <br>
             <br>
             <br>
-            <h1 style="text-align: center;">Would you like to sign out? </h1> <center> <a href=" %s "> <button id= "sign_out_button" type="button" style='height: 55px'>Sign out!</button></a> <center> <br>  <br>
+            <h1 style="text-align: center;">Would you like to sign out? </h1>  <center> <a href=" %s "> <button id= "sign_out_button" type="button">Sign out!</button></a> <center> <br>  <br>
             ''' % (users.create_logout_url('/')))
     else:
         # If the user isn't logged in...
@@ -256,21 +256,21 @@ class OutfitCart(BaseHandler):
 
     def post(self):
         self.session['outfit']
-        outfit_keys = Key(urlsafe = x)
-        for x in self.session['outfit']:
-            result = outfit()
-        for each Key in outfit_keys:
-            item = Key.get()
-            if item.categories = 'top':
-                result.top = Key
-            if item.categories = 'outerwear':
-                result.outerwear = Key
-            if item.categories = 'bottoms':
-                result.bottoms = Key
-            if item.categories = 'shoes':
-                result.shoes = Key
+        outfit_keys = [ndb.Key(urlsafe = x) for x in self.session['outfit']]
+        result = Outfit()
+        for key in outfit_keys:
+            item = key.get()
+            if item.categories == 'top':
+                result.top = key
+            if item.categories == 'outerwear':
+                result.outerwear = key
+            if item.categories == 'bottoms':
+                result.bottoms = key
+            if item.categories == 'shoes':
+                result.shoes = key
         result.put()
         self.session['outfit'] = []
+        print(result)
 
 
 config = {}
