@@ -50,7 +50,6 @@ li a:hover:not(.active){
 #sign_out_button, #delete_button:active{
   background-color: powderblue;
   color: white;
-  height: 100%;
 }
 
 #made_outfits_button:active{
