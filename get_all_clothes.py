@@ -32,7 +32,7 @@ class AllClothes(webapp2.RequestHandler):
                 "on-off": on_off
             }
             self.response.write(upload_template.render(the_variable_dict))
-
+            # Clothes[selected].key.delete()
             signout_link_html = '<a href="%s">sign out</a>' % (
                 users.create_logout_url('/welcome'))
             email_address = user.nickname()
