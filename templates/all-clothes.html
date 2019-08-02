@@ -70,8 +70,7 @@
             <script type="text/javascript">
                registerHandlers()
                  function registerHandlers() {
-                   document.getElementById({{element.number}}).addEventListener("click", myFunction);
-                   console.log('TEST')
+                   document.getElementById({{element.number}}).addEventListener("click", myFunction)
                  }
                  function myFunction(event) {
                    console.log(event.target)
@@ -81,14 +80,19 @@
                        list[i].className = 'notActive{{element.number}}'
                      }
                    event.target.className = 'active'
-                   whats_slected = {{element.number}};
-                   console.log(whats_slected)
+                   whats_selected = {{element.number}}
+                   document.getElementById("no").value = whats_selected
+                   console.log(document.getElementById("no").value)
+                   console.log(whats_selected)
                  }
             </script>
          {% endfor %}
-         <form class="toggle" action="/all_clothes" method="get">
-           <input type="hidden" name="to_delete" value="">
+        {% if whats_selected %}
+        {% else %}
+         <form class="toggle" action="/all_clothes" method="post">
+           <input id="no" type="hidden" name="to_delete" value="">
            <input type="submit" name="Made-Outfits" value="Delete Selected Item">
          </form>
+         {% endif %}
   </body>
 </html>

@@ -19,9 +19,11 @@ class Upload(webapp2.RequestHandler):
     def post(self):
         count = 0
         user = users.get_current_user()
-
+        numbers = []
         for ele in Clothes.query().fetch():
-            count += 1
+            numbers.append(ele.number)
+        while count in numbers:
+             count += 1
         #get information from the form
         img_url = self.request.get("img_url")
         article_name = self.request.get("article_name")
