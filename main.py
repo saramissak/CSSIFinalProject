@@ -252,6 +252,10 @@ class OutfitCart(BaseHandler):
         print(jinja_dict)
         self.response.write(outfit_template.render(jinja_dict))
 
+    def post(self):
+        self.session['outfit']
+        Clothes.query().filter(Clothes.categories)
+
 
 
 
