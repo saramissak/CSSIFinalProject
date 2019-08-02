@@ -104,7 +104,6 @@ class OutfitHandler(webapp2.RequestHandler):
             dict = {
                 'img': list_of_search
             }
-            print(list_of_search)
             self.response.write(make_template.render(dict))
         else:
             # If the user isn't logged in...
@@ -206,13 +205,16 @@ class BaseHandler(webapp2.RequestHandler):
 
 class OutfitCart(BaseHandler):
     def get(self):
+        print(self.session['outfit'])
         if not 'outfit' in self.session:
             self.session['outfit'] = []
-        self.session['outfit'].append(self.request.get('add'))
+        print(self.session['outfit'])
+        outfit = self.session['outfit']
+        outfit.append(self.request.get('add'))
+        self.session['outfit'] = outfit
         clothing_urls = []
         for item in self.session['outfit']:
             item_key = ndb.Key(urlsafe = item)
-            print(item)
             clothing_urls.append(item_key.get())
 
         outfit_template = jinja_current_dir.get_template('templates/made-fits.html') #html page to be used
@@ -220,7 +222,6 @@ class OutfitCart(BaseHandler):
         jinja_dict = {
             'outfits': clothing_urls,
             }
-
         print(jinja_dict)
         self.response.write(outfit_template.render(jinja_dict))
 
