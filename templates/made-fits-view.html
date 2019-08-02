@@ -56,15 +56,56 @@
 <br>
 <!-- HAVE TO EDIT BASED OFF OF OUTFIT HANDLER  -->
          {% for element in all_clothes %}
+         {% if 'shoes' in element %}
+          <div style="background-color: white" class="imagebox">
+              <img src="{{element['shoes'].img_url}}" alt="idk" id="{{element['shoes'].number}}" class='notActive{{element['shoes'].number}}'>
+              <div class="text">
+                <p>Name: {{element['shoes'].article_name}}</p>
+                <p>Description: {{element['shoes'].article_description}}</p>
+                <p>Categories: {{element['shoes'].categories}}</p>
+                <p>Personal Organization: {{element['shoes'].personal_organization}}</p>
+              </div>
+            </div>
+         {% endif %}
+
+
+         {% if 'top' in element %}
          <div style="background-color: white"class="imagebox">
-             <img src="{{element.img_url}}" alt="idk" id="{{element.number}}" class='notActive{{element.number}}'>
+             <img src="{{element['top'].img_url}}" alt="idk" id="{{element['top'].number}}" class='notActive{{element['top'].number}}'>
              <div class="text">
-               <p>Name: {{element.article_name}}</p>
-               <p>Description: {{element.article_description}}</p>
-               <p>Categories: {{element.categories}}</p>
-               <p>Personal Organization: {{element.personal_organization}}</p>
+               <p>Name: {{element['top'].article_name}}</p>
+               <p>Description: {{element['top'].article_description}}</p>
+               <p>Categories: {{element['top'].categories}}</p>
+               <p>Personal Organization: {{element['top'].personal_organization}}</p>
              </div>
            </div>
+         {% endif %}
+
+         {% if 'bottoms' in element %}
+           <div style="background-color: white"class="imagebox">
+               <img src="{{element['bottoms'].img_url}}" alt="idk" id="{{element['bottoms'].number}}" class='notActive{{element['bottoms'].number}}'>
+               <div class="text">
+                 <p>Name: {{element['bottoms'].article_name}}</p>
+                 <p>Description: {{element['bottoms'].article_description}}</p>
+                 <p>Categories: {{element['bottoms'].categories}}</p>
+                 <p>Personal Organization: {{element['bottoms'].personal_organization}}</p>
+               </div>
+             </div>
+         <br>
+         {% endif %}
+
+         {% if 'outerwear' in element %}
+         <div style="background-color: white"class="imagebox">
+             <img src="{{element['outerwear'].img_url}}" alt="idk" id="{{element['outerwear'].number}}" class='notActive{{element['outerwear'].number}}'>
+             <div class="text">
+               <p>Name: {{element['outerwear'].article_name}}</p>
+               <p>Description: {{element['outerwear'].article_description}}</p>
+               <p>Categories: {{element['outerwear'].categories}}</p>
+               <p>Personal Organization: {{element['outerwear'].personal_organization}}</p>
+             </div>
+           </div>
+         <br>
+         {% endif %}
 
             <script type="text/javascript">
                registerHandlers()
@@ -85,7 +126,7 @@
                    console.log(whats_selected)
                  }
             </script>
-         {% endfor %}
+            {% endfor %}
          <br>
          <br>
          <form class="toggle" action="/view-made-fits" method="post">
