@@ -44,8 +44,6 @@ class AllClothes(webapp2.RequestHandler):
             # If the user isn't logged in...
             login_url = users.create_login_url('/welcome')
             self.redirect(login_url)          #SIgn in HTML
-
-
     def post(self):
         user = users.get_current_user()
 
