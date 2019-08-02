@@ -270,7 +270,7 @@ class OutfitCart(BaseHandler):
                 result.shoes = key
         result.put()
         self.session['outfit'] = []
-        print(result)
+
 
 config = {}
 config['webapp2_extras.sessions'] = {
