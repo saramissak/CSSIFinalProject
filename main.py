@@ -234,11 +234,12 @@ class BaseHandler(webapp2.RequestHandler):
 class OutfitCart(BaseHandler):
     def get(self):
         print(self.session['outfit'])
-        if not 'outfit' in self.session:
+        if not 'outfit' in self.session or self.request.get('clear_outfit') == 'true':
             self.session['outfit'] = []
-        print(self.session['outfit'])
+
         outfit = self.session['outfit']
-        outfit.append(self.request.get('add'))
+        if 'add' in self.request.GET:
+            outfit.append(self.request.get('add'))
         self.session['outfit'] = outfit
         clothing_urls = []
         for item in self.session['outfit']:
@@ -255,9 +256,21 @@ class OutfitCart(BaseHandler):
 
     def post(self):
         self.session['outfit']
-        Clothes.query().filter(Clothes.categories)
-
-
+        outfit_keys = Key(urlsafe = x)
+        for x in self.session['outfit']:
+            result = outfit()
+        for each Key in outfit_keys:
+            item = Key.get()
+            if item.categories = 'top':
+                result.top = Key
+            if item.categories = 'outerwear':
+                result.outerwear = Key
+            if item.categories = 'bottoms':
+                result.bottoms = Key
+            if item.categories = 'shoes':
+                result.shoes = Key
+        result.put()
+        self.session['outfit'] = []
 
 config = {}
 config['webapp2_extras.sessions'] = {
