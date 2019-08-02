@@ -48,7 +48,7 @@
 <br>
 <center>
 <form class="toggle" action="/welcome" method="get">
-  <input type="submit" name="Made-Outfits" value="Made Outfit">
+  <input id="made_outfits_button" type="submit" name="Made-Outfits" value="Made Outfits">
 </form>
 </center>
 <br>
@@ -91,7 +91,7 @@
         {% else %}
          <form class="toggle" action="/all_clothes" method="post">
            <input id="no" type="hidden" name="to_delete" value="">
-           <input type="submit" name="Made-Outfits" value="Delete Selected Item">
+           <input id = "delete_button" type="submit" name="Made-Outfits" value="Delete Selected Item">
          </form>
          {% endif %}
   </body>

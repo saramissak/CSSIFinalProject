@@ -47,7 +47,13 @@ li a:hover:not(.active){
   color: white;
   height: 100%;
 }
-#sign_out_button:active{
+#sign_out_button, #delete_button:active{
+  background-color: powderblue;
+  color: white;
+  height: 100%;
+}
+
+#made_outfits_button:active{
   background-color: powderblue;
   color: white;
   height: 100%;
@@ -59,7 +65,11 @@ li a:hover:not(.active){
   height:100%;
 }
 
-#sign_out_button:hover:not(.active){
+#sign_out_button, #delete_button:hover:not(.active){
+  background-color: powderblue;
+  color: white;
+}
+#made_outfits_button:hover:not(.active){
   background-color: powderblue;
   color: white;
 }
@@ -81,13 +91,23 @@ li a, #fit-button{
   cursor: pointer;
 }
 
-#sign_out_button{
+#sign_out_button, #delete_button{
   width: 19%;
   border-radius: 25px;
   background-color: #99ff99;
   padding: 15px 28px;
   font-size: 19px;
   cursor: pointer;
+  text-align: center;
+}
+#made_outfits_button{
+  width: 19%;
+  border-radius: 25px;
+  background-color: #99ff99;
+  padding: 15px 28px;
+  font-size: 19px;
+  cursor: pointer;
+  text-align: center;
 }
 
 h1{
