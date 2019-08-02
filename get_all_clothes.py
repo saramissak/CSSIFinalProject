@@ -1,6 +1,7 @@
 import jinja2
 import webapp2
 import os
+import time
 
 from google.appengine.api import users
 from google.appengine.ext import ndb
@@ -32,7 +33,7 @@ class AllClothes(webapp2.RequestHandler):
                 "on-off": on_off
             }
             self.response.write(upload_template.render(the_variable_dict))
-            # Clothes[selected].key.delete()
+
             signout_link_html = '<a href="%s">sign out</a>' % (
                 users.create_logout_url('/welcome'))
             email_address = user.nickname()
@@ -42,3 +43,10 @@ class AllClothes(webapp2.RequestHandler):
             # If the user isn't logged in...
             login_url = users.create_login_url('/welcome')
             self.redirect(login_url)          #SIgn in HTML
+
+    def post(self):
+            to_delete = self.request.get("to_delete")
+            key_to_delete = Clothes.query().filter(Clothes.number == int(to_delete)).fetch()[0].key
+            Delete = key_to_delete.delete()
+            time.sleep(.1)
+            self.redirect('/all_clothes')
