@@ -121,24 +121,24 @@ class ViewMadeFits(webapp2.RequestHandler):
     def post(self):
         user = users.get_current_user()
 
-            if self.request.get("to_delete") != "":
-                to_delete = self.request.get("to_delete")
-                key_to_delete = Outfit.query().filter(Outfit.number == int(to_delete)).fetch()[0].key
-                Delete = key_to_delete.delete()
-                time.sleep(.1)
-                self.redirect('/view-made-fits')
-            else:
-                made_template = the_jinja_env.get_template('templates/made-fits-view.html') #html page to be used
+        if self.request.get("to_delete") != "":
+            to_delete = self.request.get("to_delete")
+            key_to_delete = Outfit.query().filter(Outfit.number == int(to_delete)).fetch()[0].key
+            Delete = key_to_delete.delete()
+            time.sleep(.1)
+            self.redirect('/view-made-fits')
+        else:
+            made_template = the_jinja_env.get_template('templates/made-fits-view.html') #html page to be used
 
-                Outfit_query = Outfit.query().filter(Outfit.user == user.email())
-                Outfit_fetch = Outfit_query.fetch()
-                selected= "var_string"
-                # count = "count"
-                on_off = "on"
-                the_variable_dict = {
-                    "user": user,
-                    'all_clothes': Outfit_fetch,
-                    'selected': selected,
-                    "on-off": on_off
-                }
-                self.response.write(made_template.render(the_variable_dict))
+            Outfit_query = Outfit.query().filter(Outfit.user == user.email())
+            Outfit_fetch = Outfit_query.fetch()
+            selected= "var_string"
+            # count = "count"
+            on_off = "on"
+            the_variable_dict = {
+                "user": user,
+                'all_clothes': Outfit_fetch,
+                'selected': selected,
+                "on-off": on_off
+            }
+            self.response.write(made_template.render(the_variable_dict))

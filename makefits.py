@@ -32,6 +32,8 @@ def select_clothing_piece():
 
 
 def get_shirts():
+    user = users.get_current_user()
+
     clothing_query = Clothes.query().filter(Clothes.user == user.email())
     clothing_fetch = clothing_query.filter(Clothes.categories == "shirt" ).fetch()
     shirt_list = []
@@ -41,6 +43,7 @@ def get_shirts():
     return shirt_list
 
 def get_pants():
+    user = users.get_current_user()
     clothing_query = Clothes.query().filter(Clothes.user == user.email())
     clothing_fetch = clothing_query.filter(Clothes.categories == "pants" ).fetch()
     pant_list = []
@@ -49,6 +52,7 @@ def get_pants():
     return pant_list
 
 def get_shoes():
+    user = users.get_current_user()
     clothing_query = Clothes.query().filter(Clothes.user == user.email())
     clothing_fetch = clothing_query.filter(Clothes.categories == "shoes").fetch()
     shoes_list = []
@@ -57,6 +61,7 @@ def get_shoes():
     return shoes_list
 
 def get_jacket():
+    user = users.get_current_user()
     clothing_query = Clothes.query().filter(Clothes.user == user.email())
     clothing_fetch = clothing_query.filter(Clothes.categories == "jacket").fetch()
     jacket_list = []
