@@ -1,0 +1,39 @@
+#button {
+  width: 19%;
+  border-radius: 25px;
+  background-color: #99ff99;
+  padding: 15px 28px;
+  font-size: 19px;
+  cursor: pointer;
+  text-align: center;
+}
+#button:hover {
+  background-color: powderblue;
+  color: white;
+  height:100%;
+}
+.drop-down {
+  width: 19%;
+  border-radius: 25px;
+  padding: 15px 28px;
+  font-size: 19px;
+  cursor: pointer;
+  text-align: center;
+}
+.drop-down:hover {
+  background-color: black;
+  color: white;
+  height:100%;
+}
+.text-box {
+  width: 15%;
+  border-radius: 15px;
+  padding: 10px 10px;
+  font-size: 19px;
+  cursor: pointer;
+  text-align: center;
+}
+.questions {
+  font-size: 20px;
+
+}

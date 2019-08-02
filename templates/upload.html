@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <title>Upload</title>
     <link rel="stylesheet" href="../stylesheets/style.css">
+    <link rel="stylesheet" href="../stylesheets/upload.css">
+
   </head>
   <body style="background-color:powderblue;">
     <header class="topnav">
@@ -29,29 +31,41 @@
       </nav>
     </header>
     <div>
+      <center>
     <form action="/upload" method="post" style= "margin-top: 100px">
-      Image url (Copy and paste image address here):<br>
-      <input type='text' name='img_url' value=''>
+
+      <p class="questions">Image address:</p>
+      <input type='text' name='img_url' value='' class="text-box">
       <br>
-      Name you would like to give article of clothing (ex: floral top, blue shirt):<br>
-      <input type='text' name='article_name' value=''>
       <br>
-      Description (what the article of clothes looks like):<br>
-      <input type='text' name='article_description' value=''>
+
+      <p class="questions">Name of article:</p>
+      <input type='text' name='article_name' value='' class="text-box">
       <br>
-      Category (ex: shirt, pants, shoes):<br>
-      <select name="categories">
-        <option value="shirt">Tops/Shirts</option>
-        <option value="pants">Bottoms/Pants</option>
+      <br>
+
+      <p class="questions">Description:</p>
+      <input type='text' name='article_description' value='' class="text-box">
+
+      <br>
+
+      <p class="questions">Category:</p>
+      <select name="categories" class="drop-down">
+        <option value="select">Select</option>
+        <option value="shirt">Tops</option>
+        <option value="pants">Bottoms</option>
         <option value="shoes">Shoes</option>
-        <option value="jacket">Jacket/Outer-wear</option>
+        <option value="jacket">Outerwear</option>
       </select>
       <br>
-      Personal Organization (ex: foral, jersey, athletic wear):<br>
-      <input type='text' name='personal_organization' value=''>
+      <p class="questions">Personal Organization (Ex: casual, athletic, fancy):</p>
+      <input type='text' name='personal_organization' value='' class="text-box">
+
       <br>
-      <input type="submit" value="upload">
+      <br>
+      <input type="submit" value="Upload" id="button">
     </form>
+  </center>
   </div>
   </body>
 </html>
