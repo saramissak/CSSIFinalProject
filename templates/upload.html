@@ -30,24 +30,25 @@
     </header>
     <div>
     <form action="/upload" method="post" style= "margin-top: 100px">
-      Image url (Copy and paste image address here):<br>
+      Image address:<br>
       <input type='text' name='img_url' value=''>
       <br>
-      Name you would like to give article of clothing (ex: floral top, blue shirt):<br>
+      Name of article:<br>
       <input type='text' name='article_name' value=''>
       <br>
-      Description (what the article of clothes looks like):<br>
+      Description:<br>
       <input type='text' name='article_description' value=''>
       <br>
-      Category (ex: shirt, pants, shoes):<br>
+      Category:<br>
       <select name="categories">
-        <option value="shirt">Tops/Shirts</option>
-        <option value="pants">Bottoms/Pants</option>
+        <option value="select">Select</option>
+        <option value="shirt">Tops</option>
+        <option value="pants">Bottoms</option>
         <option value="shoes">Shoes</option>
-        <option value="jacket">Jacket/Outer-wear</option>
+        <option value="jacket">Outerwear</option>
       </select>
       <br>
-      Personal Organization (ex: foral, jersey, athletic wear):<br>
+      Personal Organization (Ex: casual, athletic, fancy):<br>
       <input type='text' name='personal_organization' value=''>
       <br>
       <input type="submit" value="upload">
