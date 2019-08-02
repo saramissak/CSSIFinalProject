@@ -95,9 +95,7 @@ class ViewMadeFits(webapp2.RequestHandler):
                 if outfit.outerwear:
                     dict['outerwear'] = outfit.outerwear.get()
                 outfits.append(dict)
-            print("Printing outfit #1")
-            for key in outfits[0]:
-                print(outfits[0][key])
+
             selected= "var_string"
             # count = "count"
             on_off = "on"
