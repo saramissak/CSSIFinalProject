@@ -5,7 +5,7 @@ import time
 
 from google.appengine.api import users
 from google.appengine.ext import ndb
-from ClothesModel import Clothes, outfit
+from ClothesModel import Clothes, Outfit
 from CSSIUser import CssiUser
 
 
