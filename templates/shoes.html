@@ -45,6 +45,7 @@
           <p>Description: {{element.article_description}}</p>
           <p>Categories: {{element.categories}}</p>
           <p>Personal Organization: {{element.personal_organization}}</p>
+          <p><a href='/cart?add={{element.key.urlsafe()}}'>Add to Outfit</a><p>
         </div>
       </div>
     {% endfor %}
