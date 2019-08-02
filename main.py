@@ -56,15 +56,42 @@ class MainHandler(webapp2.RequestHandler):
       else:
         # Offer a registration form for a first-time visitor:                  #SIGN OUT PAGE
         self.response.write('''
-            <body style="background-color: skyblue">
-            <p style="color:white"; text-align: "center"; border: "3px solid green">Would you like to sign out? </p> <br> %s <br>
-            ''' % (signout_link_html))
+        <head>
+              <link rel="stylesheet" href="../stylesheets/style.css">
+        <title>Sign out</title>
+        </head>
+        <header class="topnav">
+      <img src="https://cdn1.iconfinder.com/data/icons/office-web/128/office-94-512.png">
+      <nav>
+        <ul>
+          <li><a href="/welcome">Home</a></li>
+          <li><a href="/all_clothes">Wardrobe</a></li>
+          <li><a href="/upload">Upload</a></li>
+          <li><a href="/make_outfits">Make Outfit</a></li>
+          <li><a href="/about_us">About</a></li>
+          <li><a href="/sign-in">Sign Out</a></li>
+          <li>
+          <form class="changepage" action="/search" method="get">
+             <div class="input-field">
+                 <input id="search" name="search" type="search" required>
+                 <label class="label-icon" for="search">
+                 <i class="material-icons">search</i></label>
+              </div>
+          </form>
+          </ul>
+        </nav>
+        </header>
+            <body style="background-color: powderblue">
+            <br>
+            <br>
+            <br>
+            <br>
+            <h1 style="text-align: center;">Would you like to sign out? </h1>  <center> <a href=" %s "> <button type="button">Click Me!</button></a> <center> <br>  <br>
+            ''' % (users.create_logout_url('/')))
     else:
-      # If the user isn't logged in...
-      login_url = users.create_login_url('/welcome')
-      login_html_element = '<a href="%s">Sign in</a>' % login_url
-      # Prompt the user to sign in.
-      self.response.write('Please sign in.<br>' + login_html_element)          #SIgn in HTML
+        # If the user isn't logged in...
+        login_url = users.create_login_url('/')
+        self.redirect(login_url)          #SIgn in HTML
 
 
   def post(self):
