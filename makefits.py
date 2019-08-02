@@ -37,7 +37,6 @@ def get_shirts():
     clothing_query = Clothes.query().filter(Clothes.user == user.email())
     clothing_fetch = clothing_query.filter(Clothes.categories == "shirt" ).fetch()
     shirt_list = []
-    print user.email()
     for each in clothing_fetch:
         shirt_list.append(each)
     return shirt_list

@@ -149,14 +149,12 @@ class shirt(webapp2.RequestHandler):
             'shirts': shirts_list,
             'selected': selected
         }
-        print(jinja_dict)
         self.response.write(shirt_template.render(jinja_dict))
     def post(self):
         selected = self.request.get("{{selected}}")
 
     def post(self):
         selected = self.request.get("var_string")
-        print("Selected outfit " + selected)
         user_outfits = outfit(top = selected)
         user_outfits.put()
         self.redirect('/made_outfits')
@@ -170,7 +168,6 @@ class pant(webapp2.RequestHandler):
         jinja_dict = {
             'pants': pant_list
         }
-        print(jinja_dict)
         self.response.write(pant_template.render(jinja_dict))
 
 class jackets(webapp2.RequestHandler):
@@ -182,7 +179,7 @@ class jackets(webapp2.RequestHandler):
         jinja_dict = {
             'jackets': jacket_list
         }
-        print(jinja_dict)
+
         self.response.write(jacket_template.render(jinja_dict))
 
 class shoes(webapp2.RequestHandler):
@@ -194,7 +191,7 @@ class shoes(webapp2.RequestHandler):
         jinja_dict = {
             'shoes': shoes_list,
         }
-        print(jinja_dict)
+
         self.response.write(shoes_template.render(jinja_dict))
 
         # self.response.write(json.dumps(objects_list))
@@ -233,7 +230,6 @@ class BaseHandler(webapp2.RequestHandler):
 
 class OutfitCart(BaseHandler):
     def get(self):
-        print(self.session['outfit'])
         if not 'outfit' in self.session or self.request.get('clear_outfit') == 'true':
             self.session['outfit'] = []
 
@@ -251,16 +247,15 @@ class OutfitCart(BaseHandler):
         jinja_dict = {
             'outfits': clothing_urls,
             }
-        print(jinja_dict)
         self.response.write(outfit_template.render(jinja_dict))
 
     def post(self):
-        print(ndb.Key(urlsafe = self.session['outfit'][0]).get())
+        ndb.Key(urlsafe = self.session['outfit'][0]).get()
         outfit_keys = [ndb.Key(urlsafe = x) for x in self.session['outfit']]
         result = Outfit(user = users.get_current_user().email())
         for key in outfit_keys:
             item = key.get()
-            print(item.categories)
+
             if item.categories == 'shirt':
                 result.top = key
             if item.categories == 'jacket':
@@ -269,8 +264,6 @@ class OutfitCart(BaseHandler):
                 result.bottoms = key
             if item.categories == 'shoes':
                 result.shoes = key
-        print("About to put outfit in datastore: ")
-        print(result.top)
         result.put()
         time.sleep(0.1)
         self.session['outfit'] = []

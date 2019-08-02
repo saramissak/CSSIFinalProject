@@ -80,7 +80,6 @@ class search(webapp2.RequestHandler):
             dict = {
                 'img': list_of_search
             }
-            print(list_of_search)
             self.response.write(search_template.render(dict))
         else:
             # If the user isn't logged in...
