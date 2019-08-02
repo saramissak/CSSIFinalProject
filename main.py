@@ -136,7 +136,7 @@ class OutfitHandler(webapp2.RequestHandler):
             # If the user isn't logged in...
             login_url = users.create_login_url('/welcome')
             # Prompt the user to sign in.
-            self.redirect(login_url)  
+            self.redirect(login_url)
 
 
 
